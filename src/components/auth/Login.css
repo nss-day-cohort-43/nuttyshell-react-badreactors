@@ -48,7 +48,6 @@ fieldset {
 
 .form--login {
     background-position-x: right;
-    background-image: url(pngwing.com.png);
     z-index: 1;
     min-height: 40rem;
     min-width: 45rem;

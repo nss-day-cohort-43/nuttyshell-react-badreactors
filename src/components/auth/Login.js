@@ -10,7 +10,7 @@ export const Login = props => {
     const history = useHistory()
 
     const existingUserCheck = () => {
-        return fetch(`http://localhost:8088/customers?email=${email.current.value}`)
+        return fetch(`http://localhost:8088/users?email=${email.current.value}`)
             .then(res => res.json())
             .then(user => user.length ? user[0] : false)
     }
@@ -21,7 +21,7 @@ export const Login = props => {
         existingUserCheck()
             .then(exists => {
                 if (exists) {
-                    localStorage.setItem("nustshell_user", exists.id)
+                    localStorage.setItem("nutshell_user", exists.id)
                     history.push("/")
                 } else {
                     existDialog.current.showModal()
@@ -39,7 +39,7 @@ export const Login = props => {
             <section>
                 <form className="form--login" onSubmit={handleLogin}>
                     <h1>badREACTors</h1>
-                    <h2>Sign in, asshole.</h2>
+                    <h2>Please sign in.</h2>
                     <fieldset>
                         <label htmlFor="inputEmail"> Email address </label>
                         <input ref={email} type="email"

@@ -6,12 +6,11 @@ export const Register = (props) => {
     const firstName = useRef()
     const lastName = useRef()
     const email = useRef()
-    const address = useRef()
     const conflictDialog = useRef()
     const history = useHistory()
 
     const existingUserCheck = () => {
-        return fetch(`http://localhost:8088/customers?email=${email.current.value}`)
+        return fetch(`http://localhost:8088/users?email=${email.current.value}`)
             .then(res => res.json())
             .then(user => !!user.length)
     }
@@ -23,7 +22,7 @@ export const Register = (props) => {
         existingUserCheck()
             .then((userExists) => {
                 if (!userExists) {
-                    fetch("http://localhost:8088/customers", {
+                    fetch("http://localhost:8088/users", {
                         method: "POST",
                         headers: {
                             "Content-Type": "application/json"
@@ -31,13 +30,12 @@ export const Register = (props) => {
                         body: JSON.stringify({
                             email: email.current.value,
                             name: `${firstName.current.value} ${lastName.current.value}`,
-                            address: address.current.value
                         })
                     })
                         .then(_ => _.json())
                         .then(createdUser => {
                             if (createdUser.hasOwnProperty("id")) {
-                                localStorage.setItem("kennel_customer", createdUser.id)
+                                localStorage.setItem("nutshell_user", createdUser.id)
                                 history.push("/")
                             }
                         })
@@ -58,7 +56,7 @@ export const Register = (props) => {
             </dialog>
 
             <form className="form--login" onSubmit={handleRegister}>
-                <h1 className="h3 mb-3 font-weight-normal">Please Register for BaDReAcToRs</h1>
+                <h1 className="h3 mb-3 font-weight-normal">Please Register for badREACTors</h1>
                 <fieldset>
                     <label htmlFor="firstName"> First Name </label>
                     <input ref={firstName} type="text" name="firstName" className="form-control" placeholder="First name" required autoFocus />
@@ -70,10 +68,6 @@ export const Register = (props) => {
                 <fieldset>
                     <label htmlFor="inputEmail"> Email address </label>
                     <input ref={email} type="email" name="email" className="form-control" placeholder="Email address" required />
-                </fieldset>
-                <fieldset>
-                    <label htmlFor="inputAddress"> Address </label>
-                    <input ref={address} type="address" name="address" className="form-control" placeholder="Address" required />
                 </fieldset>
 
                 <fieldset>
