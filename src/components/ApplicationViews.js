@@ -5,16 +5,21 @@ import { ArticleList } from "./article/ArticleList"
 import { ArticleProvider } from "./article/ArticleProvider"
 import { ArticleDetail } from "./article/ArticleDetail"
 import { ArticleForm } from "./article/ArticleForm"
-
+import { EventProvider } from "./event/EventProvider"
+import { EventList } from "./event/EventList"
+import { EventForm } from "./event/EventForm"
 export const ApplicationViews = () => {
     return (
         <>
 
             <ArticleProvider>
-                <Route exact path="/">
-                    <Home />
-                    <ArticleList />
-                </Route>
+                <EventProvider>
+                    <Route exact path="/">
+                        <Home />
+                        <ArticleList />
+                        <EventList />
+                    </Route>
+                </EventProvider>
             </ArticleProvider>
 
             <ArticleProvider>
@@ -31,12 +36,20 @@ export const ApplicationViews = () => {
                 </Route>
             </ArticleProvider>
 
+            <EventProvider>
+                <Route exact path="/event/create">
+                    <EventForm />
+                </Route>
+            </EventProvider>
+
             <ArticleProvider>
                 <Route exact path="/articles/edit/:articleId(\d+)">
                     <Home />
                     <ArticleForm />
                 </Route>
             </ArticleProvider>
+
+
         </>
     )
 }
