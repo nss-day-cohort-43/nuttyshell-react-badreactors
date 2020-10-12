@@ -1,15 +1,16 @@
-const eventHub = document.querySelector(".hubEvent")
+import React from "react"
+import "./Tasks.css"
+import { Link } from "react-router-dom"
 /*Purpose: To render a single task as an HTML representation of the data.*/
 
 
-export const TaskHTML = ({taskObj}) => {
-    return `
+export const TaskCard = ({taskObj}) => (
     <section class="taskListContainer">
-       <Link to={`/tasks/detail/${taskObj.id}`}>
-                {taskObj.tasksName}
+        <Link to={`/tasks/detail/${taskObj.id}`}>
+                <h3 className="taskName">{taskObj.tasksName}</h3>
+        </Link>
     </section>
-`
-}
+)
        
 
 {/* <p>

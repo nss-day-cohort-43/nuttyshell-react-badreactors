@@ -1,11 +1,8 @@
 import React, { useContext, useEffect } from "react"
-import { TaskContext } from "./TaskProvider"
-import { TaskCard } from "./TaskCard"
-import "./Task.css"
+import { TaskContext } from "./TasksProvider"
+import { TaskCard } from "./TasksCard"
+import "./Tasks.css"
 import { useHistory } from "react-router-dom";
-
-// import { TaskHTML } from "./Tasks.js";
-// import { getTasks, useTasks, saveTasks } from "./TasksProvider.js"
 
 export const TaskList = () => {
     // This state changes when `getTask()` is invoked below
@@ -13,9 +10,7 @@ export const TaskList = () => {
  
      //useEffect - reach out to the world for something
      useEffect(() => {
- 
-         getTask()
-         
+         getTask()    
      }, [])
  
      const history = useHistory()
@@ -27,12 +22,15 @@ export const TaskList = () => {
                  Add Task
              </button>
          <div className="tasks">
- 
-         {
-             tasks.map(task => {
-                 return <TaskCard key={task.id} task={task} />
-             })
-         }
+            {
+                tasks.map(task => {
+                    tasks.sort(
+                        (currentTask, nextTask) =>
+                            Date.parse(nextTask.date) - Date.parse(currentTask.date)
+                    )
+                    return <TaskCard key={task.id} task={task}/>
+                })
+            }
          </div>
      </>
    )

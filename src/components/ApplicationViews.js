@@ -1,12 +1,16 @@
 import React from "react"
 import { Route } from "react-router-dom"
 import { Home } from "./Home"
-
+//Articles//
+import { ArticleList } from "./article/ArticleList"
+import { ArticleProvider } from "./article/ArticleProvider"
+import { ArticleDetail } from "./article/ArticleDetail"
+import { ArticleForm } from "./article/ArticleForm"
 //Tasks//
-import { TaskProvider } from "./task/TaskProvider";
-import { TaskList } from "./task/TaskList";
-import { TaskForm } from "./task/TaskForm";
-import { TaskDetail} from "./task/TaskDetail";
+import { TaskProvider } from "./task/TasksProvider";
+import { TaskList } from "./task/TasksList";
+import { TaskForm } from "./task/TasksForm";
+import { TaskDetail} from "./task/TasksDetail";
 
 export const ApplicationViews = () => {
     return (
@@ -16,14 +20,61 @@ export const ApplicationViews = () => {
                 <Home />
             </Route>
 
-
 {/*Tasks*/}
-     {/*Render Task Form when http://localhost:3000/tasks*/}  
+     {/*Render Task Form when http://localhost:3000/tasks */}  
             <TaskProvider>
-                <Route exact path="/tasks"
+                <Route exact path="/">
+                    <Home />
                     <TaskList />
                 </Route>
             </TaskProvider>
+            
+    {/*Render Task Dropdown Details */}    
+            <TaskProvider>
+                <Route exact path="/tasks/detail/:taskId(\d+)">
+                    <TaskDetail />
+                </Route>
+            </TaskProvider>
+
+    {/*Render Task Form */}    
+          <TaskProvider>
+                <Route exact path="/tasks/create">
+                    <TaskForm />
+                </Route>
+            </TaskProvider>  
+
+    {/*Render the Edit Task */}    
+            <TaskProvider>
+                <Route exact path="/tasks/edit/:articleId(\d+)">
+                    <TaskForm />
+                </Route>
+            </TaskProvider>  
+
+{/*Articles*/}
+            <ArticleProvider>
+                <Route exact path="/">
+                    <Home />
+                    <ArticleList />
+                </Route>
+            </ArticleProvider>
+
+            <ArticleProvider>
+                <Route exact path="/articles/detail/:articleId(\d+)">
+                    <ArticleDetail />
+                </Route>
+            </ArticleProvider>
+
+            <ArticleProvider>
+                <Route exact path="/articles/create">
+                    <ArticleForm />
+                </Route>
+            </ArticleProvider>
+
+            <ArticleProvider>
+                <Route exact path="/articles/edit/:articleId(\d+)">
+                    <ArticleForm />
+                </Route>
+            </ArticleProvider>
         </>
     )
 }

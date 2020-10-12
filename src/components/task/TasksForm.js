@@ -1,62 +1,127 @@
 
-import React, { useContext, useRef, useEffect } from "react"
-import { LocationContext } from "../locations/LocationProvider"
-import { TaskContext } from "../tasks/TaskProvider"
-// import { CustomerContext } from "../customers/CustomerProvider"
+import React, { useContext, useRef, useEffect, useState } from "react"
+import { TaskContext } from "../task/TasksProvider"
 import "./Tasks.css"
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 
-import { saveTasks, useTasks, getTasks } from "./TasksProvider.js";
 
-// const contentTarget = document.querySelector(".createNewTask");
-// const eventHub = document.querySelector(".hubEvent");
-
-const history = useHistory()
 
 export const TaskForm = (props) => {
-    const { addTask } = useContext(AnimalContext)
-    
-    const name = useRef(null)
-    const finish = useRef(null)
+    const { addTask, getTaskById, updateTask } = useContext(TaskContext)
+    const [task, setTask] = useState({})
+    const [isLoading, setIsLoading] = useState(true);
+    const { taskId } = useParams();
+    const history = useHistory();
 
-    const constructNewTask = () => {
-        const finishBy = finish.current.value
+// {/*Create a New Task*/}
+//     const constructNewTask = () => {
+//         const finishBy = finish.current.value
 
-        if (finishBy === "") {
-            window.alert("Please select a finish by date")
-        } else {
-            addTask({
-                tasksName: name.current.value,
-                finishBy
-            })
-            .then(() => history.pushState("/tasks"))
-        }
-    }
+//         if (finishBy === "") {
+//             window.alert("Please select a finish by date")
+//         } else {
+//             addTask({
+//                 name: name.current.value,
+//                 finishBy
+//             })
+//             .then(() => history.pushState("/tasks"))
+//         }
+//     }
 
-    return (
-        <div class="taskModal">
-        <div class="taskModalContent">
-                        <form>
-                        <div id="closeTask">+</div>
-                            <h3>Add New Task</h3>
-                                <input type="text" id="taskContent" placeholder="Enter Task Here...">
-                                <input type="date" id="taskDate" placeholder="Expected Completion Date">
-                                <button type="button" id="saveTask" value="saveTask">Save</button>
-                                <button type="button" id="clearTask" value="clearTask">Clear</button>
-                            </form>
-                        </div> 
-                        </div>
-    )
+{/*Sets the edited task to update with state*/}
+const handleControlledInputChange = (task) => {
+    const newTask = { ...task }
+    newTask[task.target.name] = task.target.value
+    setTask(newTask)
 }
 
 
+{/*Get Task by Id*/}
+    useEffect(() => {
+        if (taskId) {
+            getTaskById(taskId)
+                .then(task => {
+                    setTask(task)
+                    setIsLoading(false)
+                })
+        } else {
+            setIsLoading(false)
+        }
+    }, [])
 
+{/*Render a Create new Task*/}
+    const constructTaskObj = () => {
+        //Stops additional clicks on button by disabling
+        setIsLoading(true);
+        if (taskId) {
+            updateTask({
+                name: task.tasksName,
+                due: task.finishBy,
+                userId: parseInt(localStorage.nutshell_user)
+            })
+                .then(() => history.push(`/tasks/detail/${task.id}`))
+        } else {
+            addTask({
+                name: task.tasksName,
+                due: task.finishBy,
+                userId: parseInt(localStorage.nutshell_user)
+            })
+                .then(() => history.push("/"))
+        }
+    }
 
-export const TaskForm = () => {
-    getTasks()
-        .then(() => {
-            render(useTasks());
-        })
+{/*Cancel or Close Edit Form Button Function */}
+    const Cancel = () => {
+        history.push("/")
+    }
+
+    return (
+        <form className="taskForm">
+        <h2 className="taskForm__title">{taskId ? <>Edit Task</> : <>New Task</>}</h2>
+
+{/*Input Field for Task Name*/}      
+        <fieldset>
+            <div className="form-group">
+                <label htmlFor="taskTitle">Task: </label>
+                <input type="text" id="taskTitle" name="title" required autoFocus className="form-control"
+                    placeholder="Task"
+                    onChange={handleControlledInputChange}
+                    defaultValue={task.tasksName} />
+            </div>
+        </fieldset >
+
+{/*Input Field for Task Due Date*/}
+        <fieldset>
+            <div className="form-group">
+                <label htmlFor="taskDueDate">Due Date:</label>
+                <input type="date" id="taskDueDate" name="date" required autoFocus className="form-control"
+                    placeholder="Due Date"
+                    onChange={handleControlledInputChange}
+                    defaultValue={task.date} />
+            </div>
+        </fieldset>
+
+{/*Button to Save or Add New or Edited Task*/}
+        <button className="btn btn-primary"
+            disabled={isLoading}
+            onClick={event => {
+                event.preventDefault() // Prevent browser from submitting the form
+                constructTaskObj()
+            }}>
+            {taskId ? <>Save Task</> : <>Add Task</>}
+        </button>
+
+{/*Button to Close or Cancel New or Edited Task*/}
+        <button className="btn btn-primary"
+            disabled={isLoading}
+            onClick={event => {
+                event.preventDefault()
+                Cancel()
+            }}>X
+        </button>
+
+    </form >       
+    )
 }
 
 

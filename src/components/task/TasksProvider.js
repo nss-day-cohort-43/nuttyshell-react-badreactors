@@ -7,12 +7,17 @@ export const TaskContext = createContext()
 export const TaskProvider = (props) => {
     const [tasks, setTask] = useState([])
 
+{/*Gets Tasks by Specified User Id */}
     const getTask = () => {
-        return fetch("http://localhost:8088/tasks?_expand=location")
+        return fetch("http://localhost:8088/tasks?_expand=user")
             .then(res => res.json())
             .then(setTask)
     }
-//We won't need expand at all, correct? Or will it need to be expand by userId?
+
+    const getTaskById = (id) => {
+        return fetch(`http://localhost:8088/tasks/${id}?_expand=user`)
+            .then(res => res.json())
+    }
 
     const addTask = task => {
         return fetch("http://localhost:8088/tasks", {
@@ -25,22 +30,34 @@ export const TaskProvider = (props) => {
         .then(getTask) //This refreshes the list with new tasks//
     }
 
-    //Deletes a specific task. 
+{/*Deletes or removes Tasks by Specified Id */}
     const removeTask = taskId => {
-        return fetch(`http://localhost:8088/animals/${taskId}`, {
+        return fetch(`http://localhost:8088/tasks/${taskId}`, {
             method: "DELETE"
+        })
+            .then(getTask)
+    }
+
+
+    const updateTask = task => {
+        return fetch(`http://localhost:8088/tasks/${task.id}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(task)
         })
             .then(getTask)
     }
     /*
         You return a context provider which has the
-        `locations` state, the `addLocation` function,
-        and the `getLocation` function as keys. This
+        `tasks` state, the `addTask` function,
+        and the `getTask` function as keys. This
         allows any child elements to access them.
     */
     return (
         <TaskContext.Provider value={{
-           tasks, getTask, addTask, removeTask
+           tasks, getTask, getTaskById, addTask, removeTask, updateTask
         }}>
             {props.children}
         </TaskContext.Provider>
