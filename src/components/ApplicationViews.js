@@ -16,12 +16,12 @@ export const ApplicationViews = () => {
     return (
         <>
      {/* Render the location list when http://localhost:3000/ */}
-            <Route exact path="/">
+            {/* <Route exact path="/">
                 <Home />
-            </Route>
+            </Route> */}
 
 {/*Tasks*/}
-     {/*Render Task Form when http://localhost:3000/tasks */}  
+     {/*Render Task List when http://localhost:3000/tasks */}  
             <TaskProvider>
                 <Route exact path="/">
                     <Home />
@@ -32,6 +32,7 @@ export const ApplicationViews = () => {
     {/*Render Task Dropdown Details */}    
             <TaskProvider>
                 <Route exact path="/tasks/detail/:taskId(\d+)">
+                    <Home />
                     <TaskDetail />
                 </Route>
             </TaskProvider>
@@ -39,6 +40,7 @@ export const ApplicationViews = () => {
     {/*Render Task Form */}    
           <TaskProvider>
                 <Route exact path="/tasks/create">
+                    <Home />
                     <TaskForm />
                 </Route>
             </TaskProvider>  
@@ -46,6 +48,7 @@ export const ApplicationViews = () => {
     {/*Render the Edit Task */}    
             <TaskProvider>
                 <Route exact path="/tasks/edit/:articleId(\d+)">
+                    <Home />
                     <TaskForm />
                 </Route>
             </TaskProvider>  

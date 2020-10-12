@@ -5,7 +5,7 @@ import "./Tasks.css"
 import { useParams, useHistory } from "react-router-dom"
 
 export const TaskDetail = () => {
-    const { getTaskById, removeTask } = useContext(TaskContext)
+    const { removeTask, getTaskById } = useContext(TaskContext)
 	const [task, setTask] = useState({})
 	const {taskId} = useParams();
 	const history = useHistory();
@@ -23,15 +23,15 @@ export const TaskDetail = () => {
 
     return (
         <section className="task">
-            <h3 className="task__name">{task.taskName}</h3>
-            <div className="task__date">Due:{task.finishBy}</div>
+            <h3 className="task__name">{task?.taskName}</h3>
+            <div className="task__date">Due:{task?.due}</div>
 	
 	{/*Remove Task Button*/}		
 			<button onClick={
 				() => {
 					removeTask(task.id)
 						.then(() => {
-							history.push("/task")
+							history.push("/")
 						})
 				}}>Remove Task
 			</button> 

@@ -1,40 +1,22 @@
-
-import React, { useContext, useRef, useEffect, useState } from "react"
+import React, { useContext, useEffect, useState } from "react"
 import { TaskContext } from "../task/TasksProvider"
 import "./Tasks.css"
 import { useHistory, useParams } from 'react-router-dom';
 
 
-
-export const TaskForm = (props) => {
+export const TaskForm = () => {
     const { addTask, getTaskById, updateTask } = useContext(TaskContext)
     const [task, setTask] = useState({})
     const [isLoading, setIsLoading] = useState(true);
     const { taskId } = useParams();
     const history = useHistory();
 
-// {/*Create a New Task*/}
-//     const constructNewTask = () => {
-//         const finishBy = finish.current.value
-
-//         if (finishBy === "") {
-//             window.alert("Please select a finish by date")
-//         } else {
-//             addTask({
-//                 name: name.current.value,
-//                 finishBy
-//             })
-//             .then(() => history.pushState("/tasks"))
-//         }
-//     }
-
 {/*Sets the edited task to update with state*/}
-const handleControlledInputChange = (task) => {
+const handleControlledInputChange = (event) => {
     const newTask = { ...task }
-    newTask[task.target.name] = task.target.value
+    newTask[event.target.name] = event.target.value
     setTask(newTask)
 }
-
 
 {/*Get Task by Id*/}
     useEffect(() => {
@@ -55,15 +37,16 @@ const handleControlledInputChange = (task) => {
         setIsLoading(true);
         if (taskId) {
             updateTask({
-                name: task.tasksName,
-                due: task.finishBy,
+                id: task.id,
+                taskName: task.taskName,
+                due: task.due,
                 userId: parseInt(localStorage.nutshell_user)
             })
-                .then(() => history.push(`/tasks/detail/${task.id}`))
+                .then(() => history.push(`/task/detail/${task.id}`))
         } else {
             addTask({
-                name: task.tasksName,
-                due: task.finishBy,
+                taskName: task.taskName,
+                due: task.due,
                 userId: parseInt(localStorage.nutshell_user)
             })
                 .then(() => history.push("/"))
@@ -83,10 +66,10 @@ const handleControlledInputChange = (task) => {
         <fieldset>
             <div className="form-group">
                 <label htmlFor="taskTitle">Task: </label>
-                <input type="text" id="taskTitle" name="title" required autoFocus className="form-control"
+                <input type="text" id="taskName" name="taskName" required autoFocus className="form-control"
                     placeholder="Task"
                     onChange={handleControlledInputChange}
-                    defaultValue={task.tasksName} />
+                    defaultValue={task.taskName} />
             </div>
         </fieldset >
 
@@ -94,10 +77,10 @@ const handleControlledInputChange = (task) => {
         <fieldset>
             <div className="form-group">
                 <label htmlFor="taskDueDate">Due Date:</label>
-                <input type="date" id="taskDueDate" name="date" required autoFocus className="form-control"
+                <input type="date" id="dueDate" name="due" required autoFocus className="form-control"
                     placeholder="Due Date"
                     onChange={handleControlledInputChange}
-                    defaultValue={task.date} />
+                    defaultValue={task.due} />
             </div>
         </fieldset>
 
