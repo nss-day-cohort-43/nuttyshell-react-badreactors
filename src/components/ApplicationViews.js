@@ -9,7 +9,7 @@ import { ArticleForm } from "./article/ArticleForm"
 export const ApplicationViews = () => {
     return (
         <>
-            {/* Render the location list when http://localhost:3000/ */}
+
             <ArticleProvider>
                 <Route exact path="/">
                     <Home />

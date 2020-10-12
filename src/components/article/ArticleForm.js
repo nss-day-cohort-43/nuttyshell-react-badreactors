@@ -28,7 +28,7 @@ export const ArticleForm = () => {
         setArticles(newArticle)
     }
 
-    // Get customers and locations. If employeeId is in the URL, getEmployeeById
+    // If articleId is in the URL, getArticleById
     useEffect(() => {
         if (articleId) {
             getArticleById(articleId)
@@ -69,7 +69,7 @@ export const ArticleForm = () => {
                 .then(() => history.push("/"))
         }
     }
-
+    // Function for cancel button
     const Cancel = () => {
         history.push("/")
     }

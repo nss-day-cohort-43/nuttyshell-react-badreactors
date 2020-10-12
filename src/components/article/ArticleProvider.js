@@ -52,7 +52,7 @@ export const ArticleProvider = (props) => {
     }
 
     /*
-        You return a context provider which has the
+        Return a context provider which has the
         `articles` state, the `addArticle` function,
         and the `getArticle` function as keys. This
         allows any child elements to access them.
