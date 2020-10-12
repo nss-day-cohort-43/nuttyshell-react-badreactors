@@ -53,6 +53,7 @@ export const ArticleForm = () => {
                 title: article.title,
                 content: article.content,
                 source: article.source,
+                userId: parseInt(localStorage.nutshell_user)
 
             })
                 .then(() => history.push(`/articles/detail/${article.id}`))
@@ -69,10 +70,14 @@ export const ArticleForm = () => {
         }
     }
 
+    const Cancel = () => {
+        history.push("/")
+    }
+
 
     return (
         <form className="articleForm">
-            <h2 className="articleForm__title">New Article</h2>
+            <h2 className="articleForm__title">{articleId ? <>Edit Article</> : <>New Article</>}</h2>
             <fieldset>
                 <div className="form-group">
                     <label htmlFor="articleDate">Article Date:</label>
@@ -118,6 +123,14 @@ export const ArticleForm = () => {
                     constructArticleObject()
                 }}>
                 {articleId ? <>Save Article</> : <>Add Article</>}</button>
+
+            <button className="btn btn-primary"
+                disabled={isLoading}
+                onClick={event => {
+                    event.preventDefault()
+                    Cancel()
+
+                }}>Cancel</button>
         </form >
     )
 }

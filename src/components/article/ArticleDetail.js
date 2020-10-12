@@ -18,6 +18,10 @@ export const ArticleDetail = () => {
             })
     }, [])
 
+    const Cancel = () => {
+        history.push("/")
+    }
+
     return (
         <section className="article">
             <h3 className="article__title">{article.title}</h3>
@@ -25,18 +29,24 @@ export const ArticleDetail = () => {
             <div className="article__content">Synopsis: {article.content}</div>
             <div className="article__url">Full Story: <a href={article.source}>Click Here</a></div>
             <div className="article__userId">Posted by: {article.user?.username}</div>
-
             <button onClick={
                 () => {
                     deleteArticle(article.id)
                         .then(() => {
-                            history.push("/articles")
+                            history.push("/")
                         })
                 }}>Delete Article
          </button>
             <button onClick={() => {
                 history.push(`/articles/edit/${article.id}`)
             }}>Edit</button>
+
+            <button className="btn btn-primary"
+                onClick={event => {
+                    event.preventDefault()
+                    Cancel()
+
+                }}>Cancel</button>
 
         </section>
     )
