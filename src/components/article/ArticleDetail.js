@@ -11,7 +11,6 @@ export const ArticleDetail = () => {
     const history = useHistory();
 
     useEffect(() => {
-        console.log("useEffect", articleId)
         getArticleById(articleId)
             .then((response) => {
                 setArticle(response)
@@ -23,30 +22,37 @@ export const ArticleDetail = () => {
     }
 
     return (
+
         <section className="article">
             <h3 className="article__title">{article.title}</h3>
             <div className="article__date">Date: {article.date}</div>
             <div className="article__content">Synopsis: {article.content}</div>
             <div className="article__url">Full Story: <a href={article.source}>Click Here</a></div>
             <div className="article__userId">Posted by: {article.user?.username}</div>
-            <button onClick={
-                () => {
-                    deleteArticle(article.id)
-                        .then(() => {
-                            history.push("/")
-                        })
-                }}>Delete Article
+            <div className="form__buttons">
+                {article?.user?.id === parseInt(localStorage.getItem("nutshell_user")) ?
+                    <>
+                        <button onClick={
+                            () => {
+                                deleteArticle(article.id)
+                                    .then(() => {
+                                        history.push("/")
+                                    })
+                            }}>Delete Article
          </button>
-            <button onClick={() => {
-                history.push(`/articles/edit/${article.id}`)
-            }}>Edit</button>
+                        <button onClick={() => {
+                            history.push(`/articles/edit/${article.id}`)
+                        }}>Edit</button>
+                    </>
+                    : null}
 
-            <button className="btn btn-primary"
-                onClick={event => {
-                    event.preventDefault()
-                    Cancel()
+                <button className="btn btn-primary"
+                    onClick={event => {
+                        event.preventDefault()
+                        Cancel()
 
-                }}>Cancel</button>
+                    }}>X</button>
+            </div>
 
         </section>
     )

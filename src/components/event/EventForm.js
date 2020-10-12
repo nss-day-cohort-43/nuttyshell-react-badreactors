@@ -42,8 +42,8 @@ export const EventForm = (props) => {
             </fieldset>
             <fieldset>
                 <div className="form-group">
-                    <label htmlFor="eventDate">Event Name:</label>
-                    <input type="text" id="eventDate" ref={date} required autoFocus className="form-control" placeholder="When?" />
+                    <label htmlFor="eventDate">Event Date:</label>
+                    <input type="date" id="eventDate" ref={date} required autoFocus className="form-control" placeholder="When?" />
                 </div>
             </fieldset>
             <button type="submit"

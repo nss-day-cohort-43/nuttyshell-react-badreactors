@@ -24,12 +24,14 @@ export const ApplicationViews = () => {
 
             <ArticleProvider>
                 <Route exact path="/articles/detail/:articleId(\d+)">
+                    <Home />
                     <ArticleDetail />
                 </Route>
             </ArticleProvider>
 
             <ArticleProvider>
                 <Route exact path="/articles/create">
+                    <Home />
                     <ArticleForm />
                 </Route>
             </ArticleProvider>
@@ -39,6 +41,13 @@ export const ApplicationViews = () => {
                     <EventForm />
                 </Route>
             </EventProvider>
+
+            <ArticleProvider>
+                <Route exact path="/articles/edit/:articleId(\d+)">
+                    <Home />
+                    <ArticleForm />
+                </Route>
+            </ArticleProvider>
 
 
         </>
