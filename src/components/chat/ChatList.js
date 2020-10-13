@@ -25,7 +25,7 @@ export const ChatList = (messageArray) => {
                         })
                     }
                 </div>
-<h2>badREACTors ChatRoom</h2>
+<h2>badREACTions ChatRoom</h2>
                 <button onClick={() => { history.push(`/messages/create`) }}>
           Add Message
     </button>

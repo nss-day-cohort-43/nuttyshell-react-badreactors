@@ -6,6 +6,7 @@ import { ArticleProvider } from "./article/ArticleProvider"
 import { ArticleDetail } from "./article/ArticleDetail"
 import { ArticleForm } from "./article/ArticleForm"
 import { ChatProvider } from "./chat/ChatProvider"
+import { ChatDetail } from "./chat/ChatDetail"
 import { ChatList } from "./chat/ChatList"
 import { ChatForm } from "./chat/ChatForm"
 
@@ -42,6 +43,12 @@ export const ApplicationViews = () => {
                 <Route exact path="/">
                     <Home />
                     <ChatList />
+                </Route>
+            </ChatProvider>
+
+            <ChatProvider>
+                <Route exact path="/messages/detail/:messageId(\d+)">
+                    <ChatDetail />
                 </Route>
             </ChatProvider>
 

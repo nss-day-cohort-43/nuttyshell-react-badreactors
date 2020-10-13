@@ -7,27 +7,15 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 //create HTML for a single message
 
-export const ChatCard = ({ message }) => {
-    const { deleteMessage } = useContext(ChatContext)
-    const history = useHistory()
-  return (
-    <ListGroupItem className="message-container">
-        <h3 className="message_message">{message.message}</h3>
-      <div className="message_user">{message.user.username}:</div>
-      
-      <div className="messageButtons">
-          {message.userId === parseInt(localStorage.getItem("new_user")) ?
-          <>
-          <button onClick={() => { history.push(`/messages/edit/$message.id`) }}>
-          Edit Message
-    </button>
 
-    <button onClick={() => { history.push(`/messages/delete/$message.id`) }}>
-          Delete Message
-    </button>
-          </>
-          : null}
-      </div> 
-    </ListGroupItem>
-  );
-};
+   
+   
+
+export const ChatCard = ({ message }) => (
+  <section className="message">
+      <Link to={`/messages/detail/${message.id}`}>
+          <h3 className="message__message">{message.message}</h3>
+      </Link>
+      <div className="message__userId">Posted by: {message.user?.username}</div>
+  </section>
+)
