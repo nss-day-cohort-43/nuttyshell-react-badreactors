@@ -17,7 +17,7 @@ export const ArticleList = () => {
     return (
         <>
 
-            <Container fluid="lg" className="bg-info clearfix" m="25px">
+            <Container fluid="lg" className="bg-info" m="25px">
                 <Button outline color="secondary" className="float-right sticky-top" onClick={() => { history.push("/articles/create") }}>Add Article</Button>{''}
                 <h2 className="text-light">Interesting Articles</h2>
                 <div className="articles">
