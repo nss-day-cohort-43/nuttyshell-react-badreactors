@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from "react"
 import { ArticleContext } from "../article/ArticleProvider"
-import "./Article.css"
+import { Button } from 'reactstrap'
 import { useHistory, useParams } from 'react-router-dom';
 
 export const ArticleForm = () => {
@@ -77,6 +77,13 @@ export const ArticleForm = () => {
 
     return (
         <form className="articleForm">
+            <Button close aria-label="Cancel"
+                disabled={isLoading}
+                onClick={event => {
+                    event.preventDefault()
+                    Cancel()
+                }}></Button>
+
             <h2 className="articleForm__title">{articleId ? <>Edit Article</> : <>New Article</>}</h2>
             <fieldset>
                 <div className="form-group">
@@ -124,13 +131,6 @@ export const ArticleForm = () => {
                 }}>
                 {articleId ? <>Save Article</> : <>Add Article</>}</button>
 
-            <button className="btn btn-primary"
-                disabled={isLoading}
-                onClick={event => {
-                    event.preventDefault()
-                    Cancel()
-
-                }}>X</button>
         </form >
     )
 }

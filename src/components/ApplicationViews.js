@@ -1,6 +1,8 @@
 import React from "react"
 import { Route } from "react-router-dom"
 import { Home } from "./Home"
+import { Container, Row, Col } from 'reactstrap';
+//Articles//
 import { ArticleList } from "./article/ArticleList"
 import { ArticleProvider } from "./article/ArticleProvider"
 import { ArticleDetail } from "./article/ArticleDetail"
@@ -10,9 +12,18 @@ import { ChatDetail } from "./chat/ChatDetail"
 import { ChatList } from "./chat/ChatList"
 import { ChatForm } from "./chat/ChatForm"
 
+//Tasks//
+import { TaskProvider } from "./task/TasksProvider";
+import { TaskList } from "./task/TasksList";
+import { TaskForm } from "./task/TasksForm";
+import { TaskDetail } from "./task/TasksDetail";
+//Events//
 import { EventProvider } from "./event/EventProvider"
 import { EventList } from "./event/EventList"
 import { EventForm } from "./event/EventForm"
+import { EventDetail } from "./event/EventDetail"
+import { Container, Row, Col } from "reactstrap"
+
 export const ApplicationViews = () => {
     return (
         <>
