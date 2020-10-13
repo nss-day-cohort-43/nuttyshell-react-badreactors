@@ -1,6 +1,7 @@
 import React from "react"
 import { Route } from "react-router-dom"
 import { Home } from "./Home"
+import { Container, Row, Col } from 'reactstrap';
 //Articles//
 import { ArticleList } from "./article/ArticleList"
 import { ArticleProvider } from "./article/ArticleProvider"
@@ -10,7 +11,7 @@ import { ArticleForm } from "./article/ArticleForm"
 import { TaskProvider } from "./task/TasksProvider";
 import { TaskList } from "./task/TasksList";
 import { TaskForm } from "./task/TasksForm";
-import { TaskDetail} from "./task/TasksDetail";
+import { TaskDetail } from "./task/TasksDetail";
 //Events//
 import { EventProvider } from "./event/EventProvider"
 import { EventList } from "./event/EventList"
@@ -19,21 +20,32 @@ import { EventForm } from "./event/EventForm"
 export const ApplicationViews = () => {
     return (
         <>
-     {/* Render the location list when http://localhost:3000/ */}
-            {/* <Route exact path="/">
-                <Home />
-            </Route> */}
 
-{/*Tasks*/}
-     {/*Render Task List when http://localhost:3000/tasks */}  
-            <TaskProvider>
-                <Route exact path="/">
-                    <Home />
-                    <TaskList />
-                </Route>
-            </TaskProvider>
-            
-    {/*Render Task Dropdown Details */}    
+            <ArticleProvider>
+                <EventProvider>
+                    <TaskProvider>
+                        <Route exact path="/">
+                            <Container>
+                                <Row>
+                                    <Col><TaskList /></Col>
+                                    <Col><Home /></Col>
+                                    <Col><ArticleList /></Col>
+                                </Row>
+                                <Row>
+                                    <EventList />
+                                </Row>
+                            </Container>
+                        </Route>
+                    </TaskProvider>
+                </EventProvider>
+            </ArticleProvider>
+
+
+            {/*Tasks*/}
+            {/*Render Task List when http://localhost:3000/tasks */}
+
+
+            {/*Render Task Dropdown Details */}
             <TaskProvider>
                 <Route exact path="/tasks/detail/:taskId(\d+)">
                     <Home />
@@ -41,23 +53,23 @@ export const ApplicationViews = () => {
                 </Route>
             </TaskProvider>
 
-    {/*Render Task Form */}    
-          <TaskProvider>
+            {/*Render Task Form */}
+            <TaskProvider>
                 <Route exact path="/tasks/create">
                     <Home />
                     <TaskForm />
                 </Route>
-            </TaskProvider>  
+            </TaskProvider>
 
-    {/*Render the Edit Task */}    
+            {/*Render the Edit Task */}
             <TaskProvider>
                 <Route exact path="/tasks/edit/:taskId(\d+)">
                     <Home />
                     <TaskForm />
                 </Route>
-            </TaskProvider>  
+            </TaskProvider>
 
-{/*Articles*/}
+            {/*Articles*/}
             <ArticleProvider>
                 <EventProvider>
                     <Route exact path="/">
