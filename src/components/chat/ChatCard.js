@@ -4,6 +4,7 @@ import { ListGroupItem } from "reactstrap";
 import { ChatContext} from "./ChatProvider"
 import { Link } from "react-router-dom"
 import 'bootstrap/dist/css/bootstrap.min.css';
+import "./Chat.css";
 
 //create HTML for a single message
 
@@ -14,8 +15,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 export const ChatCard = ({ message }) => (
   <section className="message">
       <Link to={`/messages/detail/${message.id}`}>
-          <h3 className="message__message">{message.message}</h3>
+          <h3 className="message__content">{message.message}</h3>
       </Link>
-      <div className="message__userId">Posted by: {message.user?.username}</div>
+      <div className="message__user">{message.user.username}</div>
   </section>
 )

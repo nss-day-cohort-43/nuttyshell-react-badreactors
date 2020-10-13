@@ -8,14 +8,14 @@ export const ChatForm = (props) => {
     ChatContext
   );
 
-  const [message, setMessage] = useState({});
+  const [messages, setMessage] = useState({});
   const [isLoading, setIsLoading] = useState(true);
 
   const { messageId } = useParams();
   const history = useHistory();
 
   const handleControlledInputChange = (event) => {
-    const newMessage = { ...message };
+    const newMessage = { ...messages };
     newMessage[event.target.name] = event.target.value;
     setMessage(newMessage);
   };
@@ -35,19 +35,19 @@ export const ChatForm = (props) => {
     setIsLoading(true);
     if (messageId) {
         editMessage({
-            id: parseInt(message.id),
-            message: message.message,
+            id: (messages.id),
+            message: messages.message,
             
-            userId: parseInt(localStorage.getItem('user'))
+            userId: messages.userId
         })
-            .then(() => history.push(`/messages/message/${message.id}`))
+            .then(() => history.push(`/messages/detail/${messages.id}`))
     } else {
         addMessage({
-            message: message.message,
+            message: messages.message,
             
-            userId: parseInt(localStorage.getItem('user'))
+            userId: parseInt(localStorage.getItem('nutshell_user'))
         })
-            .then(() => history.push("messages"))
+            // .then(() => history.push())
     }
 }
 
@@ -57,21 +57,23 @@ return (
         <fieldset>
             <div className="form-group">
                 <label htmlFor="messageMessage"> </label>
-                <input type="text" id="messageMessage" name="message" required autoFocus className="form-control"
-                    placeholder="Type @ for private messages here:"
+                <input type="text" id="message" name="message" required autoFocus className="form-control"
+                    placeholder="Enter message here:"
                     onChange={handleControlledInputChange}
-                    defaultValue={message.name} />
+                    defaultValue={messages.name} 
+                    />
             </div>
         </fieldset>
         
-        <button type="submit"
+        <button type="saveMessage"
             className="btn btn-primary"
             disabled={isLoading}
             onClick={event => {
-                event.preventDefault() // Prevent browser from submitting the form
+                event.preventDefault() 
+                // Prevent browser from submitting the form
                 constructNewMessage()
             }}>
-            {messageId ? <>Save Message</> : <>Add Message</> }
+            {messageId ? <>Save Message</> : <>Send Message</> }
             </button>
     </form>
 )

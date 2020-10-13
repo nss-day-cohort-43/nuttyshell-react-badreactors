@@ -21,8 +21,7 @@ export const Login = props => {
         existingUserCheck()
             .then(exists => {
                 if (exists) {
-                    // localStorage.setItem("nutshell_user", exists.id)
-                    localStorage.setItem("user", exists.id)
+                    localStorage.setItem("nutshell_user", exists.id)
                     history.push("/")
                 } else {
                     existDialog.current.showModal()
@@ -34,9 +33,7 @@ export const Login = props => {
         <main className="container--login">
             <dialog className="dialog dialog--auth" ref={existDialog}>
                 <div>User does not exist</div>
-                <button 
-                className="button--close" 
-                onClick={e => existDialog.current.close()}>Close</button>
+                <button className="button--close" onClick={e => existDialog.current.close()}>Close</button>
             </dialog>
 
             <section>

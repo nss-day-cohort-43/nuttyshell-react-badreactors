@@ -10,41 +10,61 @@ import { ChatDetail } from "./chat/ChatDetail"
 import { ChatList } from "./chat/ChatList"
 import { ChatForm } from "./chat/ChatForm"
 
+import { EventProvider } from "./event/EventProvider"
+import { EventList } from "./event/EventList"
+import { EventForm } from "./event/EventForm"
 export const ApplicationViews = () => {
     return (
         <>
 
             <ArticleProvider>
-                <Route exact path="/">
-                    <Home />
-                    <ArticleList />
-                </Route>
+                <EventProvider>
+                    <ChatProvider>
+                    <Route exact path="/">
+                        <Home />
+                        <ArticleList />
+                        <EventList />
+                        <ChatForm />
+                        <ChatList />
+                        {/* <ChatDetail /> */}
+                    </Route>
+                    </ChatProvider>
+                </EventProvider>
             </ArticleProvider>
 
             <ArticleProvider>
                 <Route exact path="/articles/detail/:articleId(\d+)">
+                    <Home />
                     <ArticleDetail />
                 </Route>
             </ArticleProvider>
 
             <ArticleProvider>
                 <Route exact path="/articles/create">
+                    <Home />
                     <ArticleForm />
                 </Route>
             </ArticleProvider>
+
+            <EventProvider>
+                <Route exact path="/event/create">
+                    <EventForm />
+                </Route>
+            </EventProvider>
 
             <ArticleProvider>
                 <Route exact path="/articles/edit/:articleId(\d+)">
+                    <Home />
                     <ArticleForm />
                 </Route>
             </ArticleProvider>
 
-            <ChatProvider>
-                <Route exact path="/">
+            {/* <ChatProvider>
+                <Route exact path="/messages">
                     <Home />
                     <ChatList />
                 </Route>
-            </ChatProvider>
+            </ChatProvider> */}
 
             <ChatProvider>
                 <Route exact path="/messages/detail/:messageId(\d+)">
@@ -52,19 +72,20 @@ export const ApplicationViews = () => {
                 </Route>
             </ChatProvider>
 
-            <ChatProvider>
+            {/* <ChatProvider>
                 <Route exact path="/messages/create">
-                {/* <Home /> */}
+                <Home />
+                    <ChatForm />
+                </Route>
+            </ChatProvider> */}
+
+            <ChatProvider>
+                <Route exact path="/messages/edit/:messageId(\d+)">
+                <Home />
                     <ChatForm />
                 </Route>
             </ChatProvider>
 
-            <ChatProvider>
-                <Route exact path="/messages/edit/:messageId(\d+)">
-                {/* <Home /> */}
-                    <ChatForm />
-                </Route>
-            </ChatProvider>
         </>
     )
 }

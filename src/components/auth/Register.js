@@ -6,7 +6,6 @@ export const Register = (props) => {
     const firstName = useRef()
     const lastName = useRef()
     const email = useRef()
-    const username = useRef()   /*This line added by MJones-thought needed for login*/
     const conflictDialog = useRef()
     const history = useHistory()
 
@@ -29,15 +28,14 @@ export const Register = (props) => {
                             "Content-Type": "application/json"
                         },
                         body: JSON.stringify({
-                            username: username.current.value, /*Line added by Mjones*/
                             email: email.current.value,
-                            name: `${firstName.current.value} ${lastName.current.value}`,
+                            username: `${firstName.current.value} ${lastName.current.value}`,
                         })
                     })
                         .then(_ => _.json())
                         .then(createdUser => {
                             if (createdUser.hasOwnProperty("id")) {
-                                localStorage.setItem("user", createdUser.id) /*Removed 'Nutshell_' before user.*/
+                                localStorage.setItem("nutshell_user", createdUser.id)
                                 history.push("/")
                             }
                         })
@@ -70,10 +68,6 @@ export const Register = (props) => {
                 <fieldset>
                     <label htmlFor="inputEmail"> Email address </label>
                     <input ref={email} type="email" name="email" className="form-control" placeholder="Email address" required />
-                </fieldset>
-                <fieldset>
-                    <label htmlFor="username"> Username </label>
-                    <input ref={username} type="text" name="username" className="form-control" placeholder="Username" required />
                 </fieldset>
 
                 <fieldset>

@@ -1,5 +1,6 @@
 import React, { useState, createContext } from "react"
 import 'bootstrap/dist/css/bootstrap.min.css';
+import "./Chat.css";
 
 //This creates the ChatContext
 export const ChatContext = createContext()
@@ -28,7 +29,19 @@ export const ChatProvider = props => {
         .then(getMessages)
     }
 
-    
+    const getMessageById = (id) => {
+    return fetch(`http://localhost:8088/messages/${id}`)
+        .then(res => res.json())
+}
+
+
+const deleteMessage = messageId => {
+    return fetch(`http://localhost:8088/messages/${messageId}`, {
+        method: "DELETE"
+    })
+        .then(getMessages)
+}
+
 const editMessage = messageObject => {
     return fetch(`http://localhost:8088/messages/${messageObject.id}`, {
         method: "PUT",
@@ -40,17 +53,7 @@ const editMessage = messageObject => {
     .then(getMessages)
 }
 
-const deleteMessage = messageId => {
-    return fetch(`http://localhost:8088/messages/${messageId}`, {
-        method: "DELETE"
-    })
-        .then(getMessages)
-}
 
-const getMessageById = (id) => {
-    return fetch(`http://localhost:8088/messages/${id}`)
-        .then(res => res.json())
-}
     //context provides messages and get messages
     return (
         <ChatContext.Provider value={{

@@ -130,7 +130,7 @@ export const ArticleForm = () => {
                     event.preventDefault()
                     Cancel()
 
-                }}>Cancel</button>
+                }}>X</button>
         </form >
     )
 }
