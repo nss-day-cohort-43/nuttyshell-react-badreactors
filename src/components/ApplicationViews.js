@@ -24,14 +24,20 @@ export const ApplicationViews = () => {
                 <Home />
             </Route> */}
 
+            <ArticleProvider>
+                <EventProvider>
+                    <TaskProvider>
+                        <Route exact path="/">
+                            <Home />
+                            <ArticleList />
+                            <EventList />
+                            <TaskList />
+                        </Route>
+                    </TaskProvider>
+                </EventProvider>
+            </ArticleProvider>
+
 {/*Tasks*/}
-     {/*Render Task List when http://localhost:3000/tasks */}  
-            <TaskProvider>
-                <Route exact path="/">
-                    <Home />
-                    <TaskList />
-                </Route>
-            </TaskProvider>
             
     {/*Render Task Dropdown Details */}    
             <TaskProvider>
@@ -58,15 +64,6 @@ export const ApplicationViews = () => {
             </TaskProvider>  
 
 {/*Articles*/}
-            <ArticleProvider>
-                <EventProvider>
-                    <Route exact path="/">
-                        <Home />
-                        <ArticleList />
-                        <EventList />
-                    </Route>
-                </EventProvider>
-            </ArticleProvider>
 
             <ArticleProvider>
                 <Route exact path="/articles/detail/:articleId(\d+)">

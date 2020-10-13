@@ -90,14 +90,14 @@ const handleControlledInputChange = (event) => {
         </fieldset>
 
 {/*Button to Save or Add New or Edited Task*/}
-        <Button outline color="secondary" className="btn btn-primary"
+        <button className="btn btn-primary"
             disabled={isLoading}
             onClick={event => {
                 event.preventDefault() // Prevent browser from submitting the form
                 constructTaskObj()
             }}>
             {taskId ? <>Save Task</> : <>Add Task</>}
-        </Button>{''}
+        </button>
 
 {/*Button to Close or Cancel New or Edited Task*/}
         <button className="btn btn-primary"
