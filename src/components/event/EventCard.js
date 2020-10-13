@@ -4,7 +4,10 @@ import { Link } from "react-router-dom"
 
 export const EventCard = ({ event }) => (
     <section className="event">
-        <h3> {event.name} </h3>
+        <h3>
+            <Link to={`/event/detail/${event.id}`}>
+                {event.name}
+            </Link> </h3>
 
         <div className="event__name">Name: {event.name}</div>
         <div className="event__date">Date: {event.date}</div>

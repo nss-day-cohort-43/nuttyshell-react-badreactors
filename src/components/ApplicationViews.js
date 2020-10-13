@@ -8,6 +8,7 @@ import { ArticleForm } from "./article/ArticleForm"
 import { EventProvider } from "./event/EventProvider"
 import { EventList } from "./event/EventList"
 import { EventForm } from "./event/EventForm"
+import { EventDetail } from "./event/EventDetail"
 export const ApplicationViews = () => {
     return (
         <>
@@ -48,6 +49,18 @@ export const ApplicationViews = () => {
                     <ArticleForm />
                 </Route>
             </ArticleProvider>
+
+            <EventProvider>
+                <Route exact path="/event/detail/:eventId(\d+)">
+                    <EventDetail />
+                </Route>
+            </EventProvider>
+
+            <EventProvider>
+                <Route exact path="/event/edit/:eventId(\d+)">
+                    <EventForm />
+                </Route>
+            </EventProvider>
 
 
         </>
