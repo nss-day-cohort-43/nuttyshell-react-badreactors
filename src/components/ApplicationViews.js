@@ -1,6 +1,7 @@
 import React from "react"
 import { Route } from "react-router-dom"
 import { Home } from "./Home"
+import { Container, Row, Col } from 'reactstrap';
 //Articles//
 import { ArticleList } from "./article/ArticleList"
 import { ArticleProvider } from "./article/ArticleProvider"
