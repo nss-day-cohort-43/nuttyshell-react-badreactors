@@ -37,7 +37,8 @@ export const TaskDetail = () => {
 			</button> 
 
 	{/*Edit Task Button*/}
-		<button onClick={() => {
+		<button onClick={
+			() => {
                 history.push(`/tasks/edit/${task.id}`)
             }}>Edit
 		</button>

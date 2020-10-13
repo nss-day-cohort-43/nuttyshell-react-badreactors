@@ -6,21 +6,26 @@ import { useHistory, useParams } from 'react-router-dom';
 
 export const TaskForm = () => {
     const { addTask, getTaskById, updateTask } = useContext(TaskContext)
+    //for edit, hold on to state of task in this view
     const [task, setTask] = useState({})
+    //wait for data before button is active
     const [isLoading, setIsLoading] = useState(true);
     const { taskId } = useParams();
     const history = useHistory();
 
 {/*Sets the edited task to update with state*/}
 const handleControlledInputChange = (event) => {
+    //When changing a state object or array, always create a copy make changes, and then set state.
     const newTask = { ...task }
+     //task is an object with properties. set the property to the new value
     newTask[event.target.name] = event.target.value
+    //update state
     setTask(newTask)
 }
 
 {/*Get Task by Id*/}
     useEffect(() => {
-        if (taskId) {
+        if (taskId){
             getTaskById(taskId)
                 .then(task => {
                     setTask(task)
@@ -42,7 +47,7 @@ const handleControlledInputChange = (event) => {
                 due: task.due,
                 userId: parseInt(localStorage.nutshell_user)
             })
-                .then(() => history.push(`/task/detail/${task.id}`))
+                .then(() => history.push(`/tasks/detail/${task.id}`))
         } else {
             addTask({
                 taskName: task.taskName,
