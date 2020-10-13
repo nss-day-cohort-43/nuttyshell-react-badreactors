@@ -5,9 +5,9 @@ import { Card, CardBody, CardTitle, CardText, CardHeader } from "reactstrap"
 
 export const EventCard = ({ event }) => (
     <section className="event">
-        <Card className="rounded bg-info clearfix">
-            <CardHeader className="bg-dark">
-                <Link to={`/event/detail/${event.id}`}>
+        <Card className="rounded bg-light clearfix">
+            <CardHeader className="bg-info">
+                <Link className="text-light" to={`/event/detail/${event.id}`}>
                     {event.name}
                 </Link>
             </CardHeader>
