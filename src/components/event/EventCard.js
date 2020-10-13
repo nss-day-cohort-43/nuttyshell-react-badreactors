@@ -1,13 +1,21 @@
 import React from "react"
-import "./Event.css"
+
 import { Link } from "react-router-dom"
+import { Card, CardBody, CardTitle, CardText, CardHeader } from "reactstrap"
 
 export const EventCard = ({ event }) => (
     <section className="event">
-        <h3> {event.name} </h3>
-
-        <div className="event__name">Name: {event.name}</div>
-        <div className="event__date">Date: {event.date}</div>
-        <div className="event__Location">Location: {event.location}</div>
-    </section>
+        <Card className="rounded bg-info clearfix">
+            <CardHeader className="bg-dark">
+                <Link to={`/event/detail/${event.id}`}>
+                    {event.name}
+                </Link>
+            </CardHeader>
+            <CardBody>
+                <CardTitle>Name: {event.name}</CardTitle>
+                <CardText>Date: {event.date}</CardText>
+                <CardText>Location: {event.location}</CardText>
+            </CardBody>
+        </Card>
+    </section >
 )

@@ -1,65 +1,126 @@
-import React, { useContext, useRef, useEffect } from "react"
-import { EventContext } from "./EventProvider"
+import React, { useContext, useState, useEffect } from "react"
+import { EventContext } from "../event/EventProvider"
 import "./Event.css"
-import { useHistory } from 'react-router-dom'
+import { useHistory, useParams } from 'react-router-dom';
 
-export const EventForm = (props) => {
-    const { addEvent, getEventEntries } = useContext(EventContext)
+export const EventForm = () => {
+    const { addEvent, getEventById, updateEvent } = useContext(EventContext)
 
-    const name = useRef(null)
-    const location = useRef(null)
-    const date = useRef(null)
 
+    //for edit, hold on to state of article in this view
+    const [event, setEvent] = useState({})
+    //wait for data before button is active
+    const [isLoading, setIsLoading] = useState(true);
+
+    const { eventId } = useParams();
+    const history = useHistory();
+
+    //when field changes, update state. This causes a re-render and updates the view.
+    //Controlled component
+    const handleControlledInputChange = (e) => {
+        //When changing a state object or array, 
+        //always create a copy make changes, and then set state.
+        const newEvent = { ...event }
+        //article is an object with properties. 
+        //set the property to the new value
+        newEvent[e.target.name] = e.target.value
+        //update state
+        setEvent(newEvent)
+    }
+
+    // If articleId is in the URL, getArticleById
     useEffect(() => {
-        getEventEntries()
+        if (eventId) {
+            getEventById(eventId)
+                .then(event => {
+                    setEvent(event)
+                    setIsLoading(false)
+                })
+        } else {
+            setIsLoading(false)
+        }
+
     }, [])
 
-    const createNewEvent = () => {
-        addEvent({
-            name: name.current.value,
-            location: location.current.value,
-            date: date.current.value,
-            userId: parseInt(localStorage.nutshell_user)
-        })
-            .then(() => history.push("/"))
+    const construcEventObject = () => {
+        //disable the button - no extra clicks
+        setIsLoading(true);
+        if (eventId) {
+            //PUT - update
+            updateEvent({
+                name: event.name,
+                date: event.date,
+                location: event.location,
+                id: event.id,
+                userId: parseInt(localStorage.nutshell_user)
+
+            })
+                .then(() => history.push(`/event/detail/${event.id}`))
+        } else {
+            //POST - add
+            addEvent({
+                name: event.name,
+                date: event.date,
+                location: event.location,
+                id: event.id,
+                userId: parseInt(localStorage.nutshell_user)
+            })
+                .then(() => history.push("/"))
+        }
     }
-    const history = useHistory();
+    // Function for cancel button
+    const Cancel = () => {
+        history.push("/")
+    }
+
 
     return (
         <form className="eventForm">
-            <h2 className="eventForm__title">New Event</h2>
+            <h2 className="eventForm__title">{eventId ? <>Edit Event</> : <>New Event</>}</h2>
             <fieldset>
                 <div className="form-group">
-                    <label htmlFor="eventName">Event Name:</label>
-                    <input type="text" id="eventName" ref={name} required autoFocus className="form-control" placeholder="Event name" />
+                    <label htmlFor="EventTitle">Event Name: </label>
+                    <input type="text" id="EventName" name="name" required autoFocus className="form-control"
+                        placeholder="Name"
+                        onChange={handleControlledInputChange}
+                        defaultValue={event.name} />
                 </div>
-            </fieldset>
-            <fieldset>
-                <div className="form-group">
-                    <label htmlFor="evenLocation">Location:</label>
-                    <input type="text" id="eventLocation" ref={location} required autoFocus className="form-control" placeholder="Event Location" />
-                </div>
-            </fieldset>
+            </fieldset >
             <fieldset>
                 <div className="form-group">
                     <label htmlFor="eventDate">Event Date:</label>
-                    <input type="date" id="eventDate" ref={date} required autoFocus className="form-control" placeholder="When?" />
+                    <input type="date" id="eventDate" name="date" required autoFocus className="form-control"
+                        placeholder="Date"
+                        onChange={handleControlledInputChange}
+                        defaultValue={event.date} />
                 </div>
             </fieldset>
-            <button type="submit"
-                onClick={evt => {
-                    evt.preventDefault()
-                    createNewEvent()
-                }}
-                className="butn btn-primary">
-                Save Event
-            </button>
-            <button onClick={() => history.push("/")}>
-                Cancel
-            </button>
-        </form>
+            <fieldset>
+                <div className="form-group">
+                    <label htmlFor="eventLocation">Location: </label>
+                    <input type="text" id="eventLocation" name="source" required autoFocus className="form-control"
+                        placeholder="Location"
+                        onChange={handleControlledInputChange}
+                        defaultValue={event.location} />
+                </div>
+            </fieldset >
+
+
+            <button className="btn btn-primary"
+                disabled={isLoading}
+                onClick={e => {
+                    e.preventDefault() // Prevent browser from submitting the form
+                    construcEventObject()
+                }}>
+                {eventId ? <>Save Event</> : <>Add Event</>}</button>
+
+            <button className="btn btn-primary"
+                disabled={isLoading}
+                onClick={e => {
+                    e.preventDefault()
+                    Cancel()
+
+                }}>X</button>
+        </form >
     )
 }
-
-
-

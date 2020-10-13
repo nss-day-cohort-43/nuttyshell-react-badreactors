@@ -16,14 +16,17 @@ import { TaskDetail } from "./task/TasksDetail";
 import { EventProvider } from "./event/EventProvider"
 import { EventList } from "./event/EventList"
 import { EventForm } from "./event/EventForm"
+import { EventDetail } from "./event/EventDetail"
+import { Container, Row, Col } from "reactstrap"
 
 export const ApplicationViews = () => {
     return (
         <>
 
-            <ArticleProvider>
-                <EventProvider>
-                    <TaskProvider>
+
+            <TaskProvider>
+                <ArticleProvider>
+                    <EventProvider>
                         <Route exact path="/">
                             <Container>
                                 <Row>
@@ -32,18 +35,17 @@ export const ApplicationViews = () => {
                                     <Col><ArticleList /></Col>
                                 </Row>
                                 <Row>
-                                    <EventList />
+                                    <Col><EventList /></Col>
                                 </Row>
                             </Container>
                         </Route>
-                    </TaskProvider>
-                </EventProvider>
-            </ArticleProvider>
-
-
-            {/*Tasks*/}
-            {/*Render Task List when http://localhost:3000/tasks */}
-
+                    </EventProvider>
+                </ArticleProvider>
+            </TaskProvider>
+            {/* Render the location list when http://localhost:3000/ */}
+            {/* <Route exact path="/">
+                <Home />
+            </Route> */}
 
             {/*Render Task Dropdown Details */}
             <TaskProvider>
@@ -69,16 +71,6 @@ export const ApplicationViews = () => {
                 </Route>
             </TaskProvider>
 
-            {/*Articles*/}
-            <ArticleProvider>
-                <EventProvider>
-                    <Route exact path="/">
-                        <Home />
-                        <ArticleList />
-                        <EventList />
-                    </Route>
-                </EventProvider>
-            </ArticleProvider>
 
             <ArticleProvider>
                 <Route exact path="/articles/detail/:articleId(\d+)">
@@ -106,6 +98,18 @@ export const ApplicationViews = () => {
                     <ArticleForm />
                 </Route>
             </ArticleProvider>
+
+            <EventProvider>
+                <Route exact path="/event/detail/:eventId(\d+)">
+                    <EventDetail />
+                </Route>
+            </EventProvider>
+
+            <EventProvider>
+                <Route exact path="/event/edit/:eventId(\d+)">
+                    <EventForm />
+                </Route>
+            </EventProvider>
 
 
         </>
