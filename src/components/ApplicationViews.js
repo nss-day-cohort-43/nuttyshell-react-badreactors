@@ -5,6 +5,9 @@ import { ArticleList } from "./article/ArticleList"
 import { ArticleProvider } from "./article/ArticleProvider"
 import { ArticleDetail } from "./article/ArticleDetail"
 import { ArticleForm } from "./article/ArticleForm"
+import { ChatProvider } from "./chat/ChatProvider"
+import { ChatList } from "./chat/ChatList"
+import { ChatForm } from "./chat/ChatForm"
 
 export const ApplicationViews = () => {
     return (
@@ -34,6 +37,27 @@ export const ApplicationViews = () => {
                     <ArticleForm />
                 </Route>
             </ArticleProvider>
+
+            <ChatProvider>
+                <Route exact path="/">
+                    <Home />
+                    <ChatList />
+                </Route>
+            </ChatProvider>
+
+            <ChatProvider>
+                <Route exact path="/messages/create">
+                {/* <Home /> */}
+                    <ChatForm />
+                </Route>
+            </ChatProvider>
+
+            <ChatProvider>
+                <Route exact path="/messages/edit/:messageId(\d+)">
+                {/* <Home /> */}
+                    <ChatForm />
+                </Route>
+            </ChatProvider>
         </>
     )
 }
