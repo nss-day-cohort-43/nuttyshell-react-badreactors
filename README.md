@@ -1,3 +1,13 @@
+First Time Users:
+
+1. Run NPM install.
+2. Run NPM start. (This will open a React webpage of the app)
+3. Create a API folder at the root.
+4. Within that folder create a database.json file.
+5. Go into the API folder on your terminal and type json-server -p 8088 -w database.json
+
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
