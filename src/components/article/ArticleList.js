@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from "react"
 import { ArticleContext } from "./ArticleProvider"
 import { ArticleCard } from "./ArticleCard"
 import { useHistory } from "react-router-dom"
-import { Container } from 'reactstrap'
+import { Container, Button } from 'reactstrap'
 
 
 export const ArticleList = () => {
@@ -16,11 +16,10 @@ export const ArticleList = () => {
 
     return (
         <>
-            <Container fluid="sm">
-                <h2>Interesting Articles</h2>
-                <button onClick={() => { history.push("/articles/create") }}>
-                    Add Article
-        </button>
+
+            <Container fluid="lg" className="bg-info clearfix" m="25px">
+                <Button outline color="secondary" className="float-right sticky-top" onClick={() => { history.push("/articles/create") }}>Add Article</Button>{''}
+                <h2 className="text-light">Interesting Articles</h2>
                 <div className="articles">
                     {
                         articles.map(article => {
