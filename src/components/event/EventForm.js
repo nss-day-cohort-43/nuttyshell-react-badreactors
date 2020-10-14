@@ -2,6 +2,7 @@ import React, { useContext, useState, useEffect } from "react"
 import { EventContext } from "../event/EventProvider"
 import "./Event.css"
 import { useHistory, useParams } from 'react-router-dom';
+import { Button } from "reactstrap"
 
 export const EventForm = () => {
     const { addEvent, getEventById, updateEvent } = useContext(EventContext)
@@ -75,7 +76,14 @@ export const EventForm = () => {
 
 
     return (
-        <form className="eventForm">
+        <form className="EventForm">
+            <Button close aria-label="Cancel"
+                disabled={isLoading}
+                onClick={event => {
+                    event.preventDefault()
+                    Cancel()
+                }}></Button>
+
             <h2 className="eventForm__title">{eventId ? <>Edit Event</> : <>New Event</>}</h2>
             <fieldset>
                 <div className="form-group">

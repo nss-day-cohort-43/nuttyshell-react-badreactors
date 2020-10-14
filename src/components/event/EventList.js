@@ -2,6 +2,7 @@ import React, { useContext, useEffect } from "react"
 import { EventContext } from "./EventProvider"
 import { EventCard } from "./EventCard"
 import { useHistory } from "react-router-dom"
+import { Button, Col, Container, Row } from "reactstrap"
 import "./Event.css"
 
 export const EventList = () => {
@@ -14,18 +15,18 @@ export const EventList = () => {
     const history = useHistory()
     return (
         <>
-            <h2> Events</h2>
-            <button onClick={() => history.push("/event/create")}>
-                Add Event
-            </button>
-            <div className="events">
+            <Container className="bg-dark overflow-auto h-25">
+                <Button outline color="secondary" className="float-right sticky-top" onClick={() => history.push("/event/create")}>
+                    Add Event
+            </Button>
+                <h2 className="text-light"> Events</h2>
                 {
                     events.map(event => {
                         return <EventCard key={event.id} event={event} />
 
                     })
                 }
-            </div>
+            </Container>
         </>
     )
 }
