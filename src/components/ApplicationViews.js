@@ -99,6 +99,13 @@ export const ApplicationViews = () => {
                 </Route>
             </EventProvider>
 
+            <EventProvider>
+                <Route exact path="/event/detail/:eventId(\d+)">
+                    <Home />
+                    <EventDetail />
+                </Route>
+            </EventProvider>
+
             <ArticleProvider>
                 <Route exact path="/articles/edit/:articleId(\d+)">
                     <Home />
