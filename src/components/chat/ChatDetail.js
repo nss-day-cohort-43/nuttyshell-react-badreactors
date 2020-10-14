@@ -20,9 +20,9 @@ export const ChatDetail = () => {
             })
     }, [])
 
-    // const Cancel = () => {
-    //     history.push("/")
-    // }
+    const Cancel = () => {
+        history.push("/")
+    }
     return (
         <section className="message">
             <h3 className="message__user">{message.user}</h3>
@@ -44,14 +44,14 @@ export const ChatDetail = () => {
                 
                     
                 
-            }}>Edddit</button>
+            }}>Edit</button>
 
-            {/* <button className="btn btn-primary"
+            <button className="btn btn-danger"
                 onClick={event => {
                     event.preventDefault()
                     Cancel()
 
-                }}>Cancel</button> */}
+                }}>Cancel</button>
 
         </section>
     )
