@@ -2,6 +2,8 @@ import React from "react"
 import { Route } from "react-router-dom"
 import { Home } from "./Home"
 import { Container, Row, Col } from 'reactstrap';
+import { Button } from 'reactstrap';
+
 //Articles//
 import { ArticleList } from "./article/ArticleList"
 import { ArticleProvider } from "./article/ArticleProvider"
@@ -22,7 +24,7 @@ import { EventProvider } from "./event/EventProvider"
 import { EventList } from "./event/EventList"
 import { EventForm } from "./event/EventForm"
 import { EventDetail } from "./event/EventDetail"
-import { Container, Row, Col } from "reactstrap"
+// import { Container, Row, Col } from "reactstrap"
 
 export const ApplicationViews = () => {
     return (

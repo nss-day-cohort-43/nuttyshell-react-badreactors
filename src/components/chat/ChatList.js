@@ -6,6 +6,9 @@ import { Jumbotron, Spinner, ListGroup, ListGroupItem, Button } from 'reactstrap
 import { useHistory } from "react-router-dom"
 import "./Chat.css";
 
+
+
+
 export const ChatList = () => {
     const { messages, getMessages } = useContext(ChatContext)
 
@@ -16,8 +19,10 @@ export const ChatList = () => {
     const history = useHistory()
 
     return (
-        <div className="message">
+        
+        <div className="messageBox">
             <h2>badREACTions!</h2>
+            
             {
                 messages.map(message => {
                     return <ChatCard key={message.id} user={message.user.name} message={message} />

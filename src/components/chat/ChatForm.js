@@ -1,7 +1,11 @@
 import React, { useContext, useEffect, useState } from "react";
-import 'bootstrap/dist/css/bootstrap.min.css';
+// import 'bootstrap/dist/css/bootstrap.min.css';
 import { useHistory, useParams } from "react-router-dom";
 import { ChatContext } from "./ChatProvider";
+import { Button } from 'reactstrap';
+
+
+
 
 export const ChatForm = (props) => {
   const { addMessage, getMessageById, editMessage } = useContext(
@@ -66,6 +70,7 @@ return (
         </fieldset>
         
         <button type="saveMessage"
+       
             className="btn btn-primary"
             disabled={isLoading}
             onClick={event => {
@@ -73,8 +78,19 @@ return (
                 // Prevent browser from submitting the form
                 constructNewMessage()
             }}>
-            {messageId ? <>Save Message</> : <>Send Message</> }
+            {messageId ? <>Save MMessage</> : <>Send Message</> }
             </button>
+
+            {/* <button type="editMessage"
+            className="btn btn-primary"
+            disabled={isLoading}
+            onClick={event => {
+                event.preventDefault() 
+                // Prevent browser from submitting the form
+                constructNewMessage()
+            }}>
+            {messageId ? <>Cancel Edit</> : <>Cancel Edit</> }
+            </button> */}
     </form>
 )
 }

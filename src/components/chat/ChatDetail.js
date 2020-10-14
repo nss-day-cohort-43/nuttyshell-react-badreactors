@@ -4,6 +4,7 @@ import "./Chat.css"
 import { useParams, useHistory } from "react-router-dom"
 
 
+
 export const ChatDetail = () => {
     const { deleteMessage, getMessageById } = useContext(ChatContext)
     const [message, setMessage] = useState({})
@@ -20,17 +21,16 @@ export const ChatDetail = () => {
             })
     }, [])
 
-    // const Cancel = () => {
-    //     history.push("/")
-    // }
+    const cancelEdit = () => {
+        history.push("/")
+    }
     return (
         <section className="message">
             <h3 className="message__user">{message.user}</h3>
             <div className="message__content">{message.message}</div>
             
-
-            
-            <button onClick={
+            <button className="btn btn-primary"
+            onClick={
                 () => {
                     deleteMessage(message.id)
                         .then(() => {
@@ -38,20 +38,28 @@ export const ChatDetail = () => {
                         })
                 }}>Delete Message
          </button>
-            <button onClick={() => {
+            <button className="btn btn-primary"
+            onClick={() => {
                 history.push(`/messages/edit/${message.id}`
                 )
                 
-                    
-                
-            }}>Edddit</button>
+            }}>Edddit Message</button>
+            
+            {/* <button onClick={
+                () => {
+                    cancelEdit(message.id)
+                        // .then(() => {
+                            history.push("/")
+                        // })
+                }}>Cancel
+         </button> */}
 
-            {/* <button className="btn btn-primary"
+            <button className="btn btn-primary"
                 onClick={event => {
                     event.preventDefault()
-                    Cancel()
+                    cancelEdit()
 
-                }}>Cancel</button> */}
+                }}>Go Back</button>
 
         </section>
     )

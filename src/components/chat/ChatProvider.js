@@ -1,6 +1,8 @@
 import React, { useState, createContext } from "react"
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./Chat.css";
+import { Button } from 'reactstrap';
+
 
 //This creates the ChatContext
 export const ChatContext = createContext()
