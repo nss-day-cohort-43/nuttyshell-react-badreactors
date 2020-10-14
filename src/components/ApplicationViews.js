@@ -1,7 +1,6 @@
 import React from "react"
 import { Route } from "react-router-dom"
 import { Home } from "./Home"
-import { Container, Row, Col } from 'reactstrap';
 //Articles//
 import { ArticleList } from "./article/ArticleList"
 import { ArticleProvider } from "./article/ArticleProvider"
@@ -28,20 +27,56 @@ export const ApplicationViews = () => {
     return (
         <>
 
-            <ArticleProvider>
-                <EventProvider>
-                    <ChatProvider>
-                    <Route exact path="/">
-                        <Home />
-                        <ArticleList />
-                        <EventList />
-                        <ChatForm />
-                        <ChatList />
-                        {/* <ChatDetail /> */}
-                    </Route>
-                    </ChatProvider>
-                </EventProvider>
-            </ArticleProvider>
+            <ChatProvider>
+                <TaskProvider>
+                    <ArticleProvider>
+                        <EventProvider>
+                            <Route exact path="/">
+                                <Container>
+                                    <Row>
+                                        <Col><TaskList /></Col>
+                                        <Col><Home /></Col>
+                                        <Col><ArticleList /></Col>
+                                    </Row>
+                                    <Row>
+                                        <Col xs="6"><EventList /></Col>
+                                        <Col xs="6"><ChatForm /></Col>
+                                    </Row>
+                                </Container>
+                            </Route>
+                        </EventProvider>
+                    </ArticleProvider>
+                </TaskProvider>
+            </ChatProvider>
+            {/* Render the location list when http://localhost:3000/ */}
+            {/* <Route exact path="/">
+                <Home />
+            </Route> */}
+
+            {/*Render Task Dropdown Details */}
+            <TaskProvider>
+                <Route exact path="/tasks/detail/:taskId(\d+)">
+                    <Home />
+                    <TaskDetail />
+                </Route>
+            </TaskProvider>
+
+            {/*Render Task Form */}
+            <TaskProvider>
+                <Route exact path="/tasks/create">
+                    <Home />
+                    <TaskForm />
+                </Route>
+            </TaskProvider>
+
+            {/*Render the Edit Task */}
+            <TaskProvider>
+                <Route exact path="/tasks/edit/:taskId(\d+)">
+                    <Home />
+                    <TaskForm />
+                </Route>
+            </TaskProvider>
+
 
             <ArticleProvider>
                 <Route exact path="/articles/detail/:articleId(\d+)">
@@ -92,7 +127,7 @@ export const ApplicationViews = () => {
 
             <ChatProvider>
                 <Route exact path="/messages/edit/:messageId(\d+)">
-                <Home />
+                    <Home />
                     <ChatForm />
                 </Route>
             </ChatProvider>
