@@ -40,7 +40,8 @@ export const ApplicationViews = () => {
                                     </Row>
                                     <Row>
                                         <Col xs="6"><EventList /></Col>
-                                        <Col xs="6"><ChatForm /></Col>
+                                        <Col xs="6"><ChatList />
+                                            <ChatForm /></Col>
                                     </Row>
                                 </Container>
                             </Route>
