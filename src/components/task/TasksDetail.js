@@ -3,6 +3,7 @@ import React, { useContext, useEffect, useState } from "react"
 import { TaskContext } from "./TasksProvider"
 import "./Tasks.css"
 import { useParams, useHistory } from "react-router-dom"
+import { Button } from 'reactstrap';
 
 export const TaskDetail = () => {
     const { removeTask, getTaskById } = useContext(TaskContext)
@@ -25,32 +26,37 @@ export const TaskDetail = () => {
         <section className="task">
             <h3 className="task__name">{task?.taskName}</h3>
             <div className="task__date">Due:{task?.due}</div>
-	
-	{/*Remove Task Button*/}		
+			<div className="form__buttons">
+				{task?.user?.id === parseInt(localStorage.getItem("nutshell_user")) ?
+				<>
+		{/*Remove Task Button*/}		
+				<button onClick={
+					() => {
+						removeTask(task.id)
+							.then(() => {
+								history.push("/")
+							})
+					}}>Remove Task
+				</button> 
+
+		{/*Edit Task Button*/}
 			<button onClick={
 				() => {
-					removeTask(task.id)
-						.then(() => {
-							history.push("/")
-						})
-				}}>Remove Task
-			</button> 
+					history.push(`/tasks/edit/${task.id}`)
+				}}>Edit
+			</button>
+			</>
+			: null}
 
-	{/*Edit Task Button*/}
-		<button onClick={
-			() => {
-                history.push(`/tasks/edit/${task.id}`)
-            }}>Edit
-		</button>
+		{/*Cancel or Close Edit Task Button*/}
+			<button className="btn btn-primary"
+					onClick={event => {
+						event.preventDefault()
+						Cancel()
+					}}>X
+			</button>
 
-	{/*Cancel or Close Edit Task Button*/}
-		<button className="btn btn-primary"
-                onClick={event => {
-                    event.preventDefault()
-                    Cancel()
-                }}>X
-		</button>
-
+			</div>
         </section>
     )
 }

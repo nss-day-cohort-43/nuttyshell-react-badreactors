@@ -1,12 +1,14 @@
-import React, { useContext, useEffect } from "react"
+import React, { useContext, useEffect} from "react"
 import { TaskContext } from "./TasksProvider"
 import { TaskCard } from "./TasksCard"
 import "./Tasks.css"
 import { useHistory } from "react-router-dom";
+import { Button, Col, Container, Row } from "reactstrap"
 
 export const TaskList = () => {
     // This state changes when `getTask()` is invoked below
      const { tasks, getTask } = useContext(TaskContext)
+  
  
      //useEffect - reach out to the world for something
      useEffect(() => {
@@ -17,11 +19,13 @@ export const TaskList = () => {
  
      return (	
        <>
-         <h2>Tasks</h2>
-             <button onClick={() => {history.push("/tasks/create")}}>
+        <Container className="bg-light overflow-auto h-15 border border-primary rounded-top">
+            <Button outline color="primary" className="float-right sticky-top" onClick={() => {history.push("/tasks/create")}}>
                  Add Task
-             </button>
-         <div className="tasks">
+             </Button>
+         <h2 className="text-primary">Tasks</h2> 
+        </Container>
+        <Container className="bg-light overflow-auto h-50 border border-primary rounded-bottom border-top-0">
             {
                 tasks.map(task => {
                     tasks.sort(
@@ -31,7 +35,7 @@ export const TaskList = () => {
                     return <TaskCard key={task.id} task={task}/>
                 })
             }
-         </div>
+         </Container>
      </>
    )
  }

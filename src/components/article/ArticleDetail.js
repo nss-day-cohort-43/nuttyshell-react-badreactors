@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react"
 import { ArticleContext } from "./ArticleProvider"
-import "./Article.css"
 import { useParams, useHistory } from "react-router-dom"
+import { Container, Card, Button, CardTitle, CardText } from 'reactstrap'
 
 
 export const ArticleDetail = () => {
@@ -22,38 +22,44 @@ export const ArticleDetail = () => {
     }
 
     return (
+        <Container>
 
-        <section className="article">
-            <h3 className="article__title">{article.title}</h3>
-            <div className="article__date">Date: {article.date}</div>
-            <div className="article__content">Synopsis: {article.content}</div>
-            <div className="article__url">Full Story: <a href={article.source}>Click Here</a></div>
-            <div className="article__userId">Posted by: {article.user?.username}</div>
+            <Card body inverse color="success">
+                <CardTitle>{article.title}</CardTitle>
+                <CardTitle>Date: {article.date}</CardTitle>
+                <CardTitle>Synopsis: {article.content}</CardTitle>
+                <CardTitle>Posted by: {article.user?.username}</CardTitle>
+                <CardTitle>Full Story: <a href={article.source}>Click Here</a></CardTitle>
+            </Card>
+
+
+
+
             <div className="form__buttons">
                 {article?.user?.id === parseInt(localStorage.getItem("nutshell_user")) ?
                     <>
-                        <button onClick={
+                        <Button color="warning" onClick={
                             () => {
                                 deleteArticle(article.id)
                                     .then(() => {
                                         history.push("/")
                                     })
                             }}>Delete Article
-         </button>
-                        <button onClick={() => {
+         </Button>
+                        <Button color="warning" onClick={() => {
                             history.push(`/articles/edit/${article.id}`)
-                        }}>Edit</button>
+                        }}>Edit</Button>
                     </>
                     : null}
 
-                <button className="btn btn-primary"
+                <Button color="warning" className="float-right"
                     onClick={event => {
                         event.preventDefault()
                         Cancel()
 
-                    }}>X</button>
+                    }}>X</Button>
             </div>
 
-        </section>
+        </Container>
     )
 }

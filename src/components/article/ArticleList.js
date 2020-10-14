@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from "react"
 import { ArticleContext } from "./ArticleProvider"
 import { ArticleCard } from "./ArticleCard"
 import { useHistory } from "react-router-dom"
-import { Container } from 'reactstrap'
+import { Container, Button } from 'reactstrap'
 
 
 export const ArticleList = () => {
@@ -16,25 +16,28 @@ export const ArticleList = () => {
 
     return (
         <>
-            <Container fluid="sm">
-                <h2>Interesting Articles</h2>
-                <button onClick={() => { history.push("/articles/create") }}>
-                    Add Article
-        </button>
-                <div className="articles">
-                    {
-                        articles.map(article => {
-                            articles.sort(
-                                (currentArticle, nextArticle) =>
-                                    Date.parse(nextArticle.date) - Date.parse(currentArticle.date)
-                            )
-                            return <ArticleCard key={article.id} article={article}
-                            />
+            <Container fluid className="bg-light overflow-auto h-15 border border-success">
 
-                        })
-                    }
-                </div>
+                <Button outline color="warning" className="float-right sticky-top" onClick={() => { history.push("/articles/create") }}>
+                    Add Article
+        </Button>
+                <h2 className="text-success"> Events</h2>
             </Container>
+            <Container className="bg-light overflow-auto h-50 border border-success rounded-bottom border-top-0">
+
+                {
+                    articles.map(article => {
+                        articles.sort(
+                            (currentArticle, nextArticle) =>
+                                Date.parse(nextArticle.date) - Date.parse(currentArticle.date)
+                        )
+                        return <ArticleCard key={article.id} article={article}
+                        />
+
+                    })
+                }
+            </Container>
+
         </>
     )
 }

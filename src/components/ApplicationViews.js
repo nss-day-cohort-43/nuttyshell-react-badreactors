@@ -33,11 +33,13 @@ export const ApplicationViews = () => {
                         <EventProvider>
                             <Route exact path="/">
                                 <Container>
+                                    <Row><Home /></Row>
                                     <Row>
-                                        <Col><TaskList /></Col>
-                                        <Col><Home /></Col>
-                                        <Col><ArticleList /></Col>
+                                        <Col xs="6 pt-5"><TaskList /></Col>
+
+                                        <Col xs="6 pt-5"><ArticleList /></Col>
                                     </Row>
+
                                     <Row>
                                         <Col xs="6"><EventList /></Col>
                                         <Col xs="6"><ChatList />
@@ -50,9 +52,7 @@ export const ApplicationViews = () => {
                 </TaskProvider>
             </ChatProvider>
             {/* Render the location list when http://localhost:3000/ */}
-            {/* <Route exact path="/">
-                <Home />
-            </Route> */}
+
 
             {/*Render Task Dropdown Details */}
             <TaskProvider>
@@ -99,6 +99,13 @@ export const ApplicationViews = () => {
                 </Route>
             </EventProvider>
 
+            <EventProvider>
+                <Route exact path="/event/detail/:eventId(\d+)">
+                    <Home />
+                    <EventDetail />
+                </Route>
+            </EventProvider>
+
             <ArticleProvider>
                 <Route exact path="/articles/edit/:articleId(\d+)">
                     <Home />
@@ -106,12 +113,7 @@ export const ApplicationViews = () => {
                 </Route>
             </ArticleProvider>
 
-            {/* <ChatProvider>
-                <Route exact path="/messages">
-                    <Home />
-                    <ChatList />
-                </Route>
-            </ChatProvider> */}
+
 
             <ChatProvider>
                 <Route exact path="/messages/detail/:messageId(\d+)">
@@ -119,12 +121,7 @@ export const ApplicationViews = () => {
                 </Route>
             </ChatProvider>
 
-            {/* <ChatProvider>
-                <Route exact path="/messages/create">
-                <Home />
-                    <ChatForm />
-                </Route>
-            </ChatProvider> */}
+
 
             <ChatProvider>
                 <Route exact path="/messages/edit/:messageId(\d+)">
