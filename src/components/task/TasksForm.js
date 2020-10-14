@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react"
 import { TaskContext } from "../task/TasksProvider"
 import "./Tasks.css"
 import { useHistory, useParams } from 'react-router-dom';
-
+import { Button } from 'reactstrap'
 
 export const TaskForm = () => {
     const { addTask, getTaskById, updateTask } = useContext(TaskContext)
@@ -100,17 +100,19 @@ const handleControlledInputChange = (event) => {
         </button>
 
 {/*Button to Close or Cancel New or Edited Task*/}
-        <button className="btn btn-primary"
+        <Button close aria-label="Cancel"
             disabled={isLoading}
             onClick={event => {
                 event.preventDefault()
                 Cancel()
-            }}>X
-        </button>
+            }}>
+        </Button>
 
     </form >       
     )
 }
+
+
 
 
 
