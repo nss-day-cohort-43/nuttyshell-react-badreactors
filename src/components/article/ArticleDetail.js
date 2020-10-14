@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react"
 import { ArticleContext } from "./ArticleProvider"
-import "./Article.css"
 import { useParams, useHistory } from "react-router-dom"
+import { Container, Card, Button, CardTitle, CardText } from 'reactstrap'
 
 
 export const ArticleDetail = () => {
@@ -22,13 +22,18 @@ export const ArticleDetail = () => {
     }
 
     return (
+        <Container>
 
-        <section className="article">
-            <h3 className="article__title">{article.title}</h3>
-            <div className="article__date">Date: {article.date}</div>
-            <div className="article__content">Synopsis: {article.content}</div>
-            <div className="article__url">Full Story: <a href={article.source}>Click Here</a></div>
-            <div className="article__userId">Posted by: {article.user?.username}</div>
+            <Card body inverse color="primary">
+                <CardTitle>{article.title}</CardTitle>
+                <CardTitle>Date: {article.date}</CardTitle>
+                <CardTitle>Synopsis: {article.content}</CardTitle>
+                <CardTitle>Posted by: {article.user?.username}</CardTitle>
+            </Card>
+
+
+
+
             <div className="form__buttons">
                 {article?.user?.id === parseInt(localStorage.getItem("nutshell_user")) ?
                     <>
@@ -54,6 +59,6 @@ export const ArticleDetail = () => {
                     }}>X</button>
             </div>
 
-        </section>
+        </Container>
     )
 }

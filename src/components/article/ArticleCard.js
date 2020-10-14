@@ -15,10 +15,3 @@ export const ArticleCard = ({ article }) => (
         </Link></ListGroupItem>
     </ListGroup>
 )
-    // <section className="article">
-    //< Link to = {`/articles/detail/${article.id}`}>
-       // <h3 className="article__title">{article.title}</h3>
-       // </Link >
-      //  <div className="article__userId">Posted by: {article.user?.username} on {article.date}</div>
-   // </section>
-//)

@@ -36,7 +36,7 @@ export const ApplicationViews = () => {
                                     <Row>
                                         <Col><TaskList /></Col>
                                         <Col><Home /></Col>
-                                        <Col><ArticleList /></Col>
+                                        <Col xs="6 pt-5"><ArticleList /></Col>
                                     </Row>
                                     <Row>
                                         <Col xs="6"><EventList /></Col>
