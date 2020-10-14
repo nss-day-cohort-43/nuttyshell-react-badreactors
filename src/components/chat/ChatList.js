@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react"
 import { ChatContext } from "./ChatProvider"
 import { ChatCard } from "./ChatCard"
 import { ChatForm } from "./ChatForm"
-import { Jumbotron, Spinner, ListGroup, ListGroupItem, Button } from 'reactstrap'
+import { Button, Col, Container, Row } from "reactstrap"
 import { useHistory } from "react-router-dom"
 import "./Chat.css";
 
@@ -20,7 +20,7 @@ export const ChatList = () => {
 
     return (
         
-        <div className="messageBox">
+        <Container className="messageBox">
             <h2>badREACTions!</h2>
             
             {
@@ -35,7 +35,7 @@ export const ChatList = () => {
             {/* <button onClick={() => {history.push("/messages/edit/:messageId(\d+)")}}>
                 Edit Message
             </button>          */}
-        </div>
+        </Container>
         
     )
 }
