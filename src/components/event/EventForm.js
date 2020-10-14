@@ -106,7 +106,7 @@ export const EventForm = () => {
             <fieldset>
                 <div className="form-group">
                     <label htmlFor="eventLocation">Location: </label>
-                    <input type="text" id="eventLocation" name="source" required autoFocus className="form-control"
+                    <input type="text" id="eventLocation" name="location" required autoFocus className="form-control"
                         placeholder="Location"
                         onChange={handleControlledInputChange}
                         defaultValue={event.location} />

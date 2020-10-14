@@ -15,7 +15,7 @@ export const EventList = () => {
     const history = useHistory()
     return (
         <>
-            <Container className="bg-dark overflow-auto h-25">
+            <Container className="bg-dark overflow-auto h-50">
                 <Button outline color="secondary" className="float-right sticky-top" onClick={() => history.push("/event/create")}>
                     Add Event
             </Button>
