@@ -17,7 +17,7 @@ import { EventProvider } from "./event/EventProvider"
 import { EventList } from "./event/EventList"
 import { EventForm } from "./event/EventForm"
 import { EventDetail } from "./event/EventDetail"
-import { Container, Row, Col } from "reactstrap"
+
 
 export const ApplicationViews = () => {
     return (
