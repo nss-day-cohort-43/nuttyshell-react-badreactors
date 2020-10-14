@@ -84,7 +84,7 @@ export const ArticleForm = () => {
                     Cancel()
                 }}></Button>
 
-            <h2 className="articleForm__title">{articleId ? <>Edit Article</> : <>New Article</>}</h2>
+            <h2 className="text-warning">{articleId ? <>Edit Article</> : <>New Article</>}</h2>
             <fieldset>
                 <div className="form-group">
                     <label htmlFor="articleDate">Article Date:</label>
@@ -123,7 +123,7 @@ export const ArticleForm = () => {
             </fieldset >
 
 
-            <button className="btn btn-primary"
+            <button className="btn btn-warning"
                 disabled={isLoading}
                 onClick={event => {
                     event.preventDefault() // Prevent browser from submitting the form
