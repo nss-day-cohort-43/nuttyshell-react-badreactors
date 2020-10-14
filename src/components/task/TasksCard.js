@@ -5,14 +5,14 @@ import { Card, CardBody, CardTitle, CardText, CardHeader, Container, Row, Col } 
 /*Purpose: To render a single task as an HTML representation of the data.*/
 
 export const TaskCard = ({ task }) => {
-    const [isChecked, setIsChecked] = useState(true);
+    const [isChecked, setIsChecked] = useState(false);
 
 
     return ( 
  
     <section className="taskListContainer">
       <Card className="rounded bg-light clearfix">
-            <CardHeader className="bg-info">
+            <CardHeader className="bg-primary">
         <Container>
             <Row>
                 <Col><input className="fixed-right"

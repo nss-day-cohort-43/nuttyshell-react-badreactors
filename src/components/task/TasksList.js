@@ -19,13 +19,13 @@ export const TaskList = () => {
  
      return (	
        <>
-        <Container className="bg-dark overflow-auto h-15">
-            <Button outline color="secondary" className="float-right sticky-top" onClick={() => {history.push("/tasks/create")}}>
+        <Container className="bg-light overflow-auto h-15 border border-primary rounded-top">
+            <Button outline color="primary" className="float-right sticky-top" onClick={() => {history.push("/tasks/create")}}>
                  Add Task
              </Button>
-         <h2 className="text-light">Tasks</h2> 
+         <h2 className="text-primary">Tasks</h2> 
         </Container>
-        <Container className="bg-dark overflow-auto h-50">
+        <Container className="bg-light overflow-auto h-50 border border-primary rounded-bottom border-top-0">
             {
                 tasks.map(task => {
                     tasks.sort(

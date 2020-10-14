@@ -77,7 +77,7 @@ export const EventForm = () => {
 
     return (
         <form className="EventForm">
-            <Button close aria-label="Cancel"
+            <Button outline color="secondary" close aria-label="Cancel"
                 disabled={isLoading}
                 onClick={event => {
                     event.preventDefault()
@@ -114,21 +114,15 @@ export const EventForm = () => {
             </fieldset >
 
 
-            <button className="btn btn-primary"
+            <Button outline color="secondary"
                 disabled={isLoading}
                 onClick={e => {
                     e.preventDefault() // Prevent browser from submitting the form
                     construcEventObject()
                 }}>
-                {eventId ? <>Save Event</> : <>Add Event</>}</button>
+                {eventId ? <>Save Event</> : <>Add Event</>}</Button>
 
-            <button className="btn btn-primary"
-                disabled={isLoading}
-                onClick={e => {
-                    e.preventDefault()
-                    Cancel()
 
-                }}>X</button>
         </form >
     )
 }

@@ -15,11 +15,13 @@ export const EventList = () => {
     const history = useHistory()
     return (
         <>
-            <Container className="bg-dark overflow-auto h-50">
-                <Button outline color="secondary" className="float-right sticky-top" onClick={() => history.push("/event/create")}>
+            <Container className="bg-light overflow-auto h-15 border border-success rounded-top">
+                <Button outline color="success" className="float-right" onClick={() => history.push("/event/create")}>
                     Add Event
             </Button>
-                <h2 className="text-light"> Events</h2>
+                <h2 className="text-success"> Events</h2>
+            </Container>
+            <Container className="bg-light overflow-auto h-25 border border-success rounded-bottom border-top-0">
                 {
                     events.map(event => {
                         return <EventCard key={event.id} event={event} />

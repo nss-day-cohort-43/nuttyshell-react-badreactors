@@ -35,15 +35,14 @@ export const ApplicationViews = () => {
                             <Route exact path="/">
                                 <Container>
                                     <Row>
-                                        <Col><TaskList /></Col>
+                                        <Col xs="6 pt-5"><TaskList /></Col>
                                         <Col><Home /></Col>
                                         <Col><ArticleList /></Col>
                                     </Row>
                                     <Row>
                                         <Col xs="6"><EventList /></Col>
-                                        <Col xs="6"><ChatForm />
-                                        <ChatList/>
-                                        </Col>
+                                        <Col xs="6"><ChatList />
+                                            <ChatForm /></Col>
                                     </Row>
                                 </Container>
                             </Route>
