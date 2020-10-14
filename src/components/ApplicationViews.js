@@ -1,16 +1,17 @@
 import React from "react"
 import { Route } from "react-router-dom"
 import { Home } from "./Home"
+import { Container, Row, Col } from "reactstrap"
 //Articles//
 import { ArticleList } from "./article/ArticleList"
 import { ArticleProvider } from "./article/ArticleProvider"
 import { ArticleDetail } from "./article/ArticleDetail"
 import { ArticleForm } from "./article/ArticleForm"
+//Chat//
 import { ChatProvider } from "./chat/ChatProvider"
 import { ChatDetail } from "./chat/ChatDetail"
 import { ChatList } from "./chat/ChatList"
 import { ChatForm } from "./chat/ChatForm"
-
 //Tasks//
 import { TaskProvider } from "./task/TasksProvider";
 import { TaskList } from "./task/TasksList";
@@ -77,7 +78,6 @@ export const ApplicationViews = () => {
                 </Route>
             </TaskProvider>
 
-{/*Articles*/}
 
             <ArticleProvider>
                 <Route exact path="/articles/detail/:articleId(\d+)">
