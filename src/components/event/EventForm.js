@@ -77,7 +77,7 @@ export const EventForm = () => {
 
     return (
         <form className="EventForm">
-            <Button close aria-label="Cancel"
+            <Button outline color="secondary" close aria-label="Cancel"
                 disabled={isLoading}
                 onClick={event => {
                     event.preventDefault()
@@ -106,7 +106,7 @@ export const EventForm = () => {
             <fieldset>
                 <div className="form-group">
                     <label htmlFor="eventLocation">Location: </label>
-                    <input type="text" id="eventLocation" name="source" required autoFocus className="form-control"
+                    <input type="text" id="eventLocation" name="location" required autoFocus className="form-control"
                         placeholder="Location"
                         onChange={handleControlledInputChange}
                         defaultValue={event.location} />
@@ -114,21 +114,15 @@ export const EventForm = () => {
             </fieldset >
 
 
-            <button className="btn btn-primary"
+            <Button outline color="secondary"
                 disabled={isLoading}
                 onClick={e => {
                     e.preventDefault() // Prevent browser from submitting the form
                     construcEventObject()
                 }}>
-                {eventId ? <>Save Event</> : <>Add Event</>}</button>
+                {eventId ? <>Save Event</> : <>Add Event</>}</Button>
 
-            <button className="btn btn-primary"
-                disabled={isLoading}
-                onClick={e => {
-                    e.preventDefault()
-                    Cancel()
 
-                }}>X</button>
         </form >
     )
 }
