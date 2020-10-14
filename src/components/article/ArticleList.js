@@ -16,26 +16,28 @@ export const ArticleList = () => {
 
     return (
         <>
-            <Container className="bg-success overflow-auto h-25 rounded-mb-0" alt="100x100">
+            <Container fluid className="bg-light overflow-auto h-15 border border-success">
 
-                <Button outline color="secondary" className="float-right sticky-top" onClick={() => { history.push("/articles/create") }}>
+                <Button outline color="warning" className="float-right sticky-top" onClick={() => { history.push("/articles/create") }}>
                     Add Article
         </Button>
-                <h2>Interesting Articles</h2>
-                <div className="articles">
-                    {
-                        articles.map(article => {
-                            articles.sort(
-                                (currentArticle, nextArticle) =>
-                                    Date.parse(nextArticle.date) - Date.parse(currentArticle.date)
-                            )
-                            return <ArticleCard key={article.id} article={article}
-                            />
-
-                        })
-                    }
-                </div>
+                <h2 className="text-success"> Events</h2>
             </Container>
+            <Container className="bg-light overflow-auto h-50 border border-success rounded-bottom border-top-0">
+
+                {
+                    articles.map(article => {
+                        articles.sort(
+                            (currentArticle, nextArticle) =>
+                                Date.parse(nextArticle.date) - Date.parse(currentArticle.date)
+                        )
+                        return <ArticleCard key={article.id} article={article}
+                        />
+
+                    })
+                }
+            </Container>
+
         </>
     )
 }

@@ -24,7 +24,7 @@ export const ArticleDetail = () => {
     return (
         <Container>
 
-            <Card body inverse color="warning">
+            <Card body inverse color="success">
                 <CardTitle>{article.title}</CardTitle>
                 <CardTitle>Date: {article.date}</CardTitle>
                 <CardTitle>Synopsis: {article.content}</CardTitle>
@@ -38,26 +38,26 @@ export const ArticleDetail = () => {
             <div className="form__buttons">
                 {article?.user?.id === parseInt(localStorage.getItem("nutshell_user")) ?
                     <>
-                        <button onClick={
+                        <Button color="warning" onClick={
                             () => {
                                 deleteArticle(article.id)
                                     .then(() => {
                                         history.push("/")
                                     })
                             }}>Delete Article
-         </button>
-                        <button onClick={() => {
+         </Button>
+                        <Button color="warning" onClick={() => {
                             history.push(`/articles/edit/${article.id}`)
-                        }}>Edit</button>
+                        }}>Edit</Button>
                     </>
                     : null}
 
-                <button className="btn btn-primary"
+                <Button color="warning" className="float-right"
                     onClick={event => {
                         event.preventDefault()
                         Cancel()
 
-                    }}>X</button>
+                    }}>X</Button>
             </div>
 
         </Container>
