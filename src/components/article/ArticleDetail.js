@@ -24,11 +24,12 @@ export const ArticleDetail = () => {
     return (
         <Container>
 
-            <Card body inverse color="primary">
+            <Card body inverse color="warning">
                 <CardTitle>{article.title}</CardTitle>
                 <CardTitle>Date: {article.date}</CardTitle>
                 <CardTitle>Synopsis: {article.content}</CardTitle>
                 <CardTitle>Posted by: {article.user?.username}</CardTitle>
+                <CardTitle>Full Story: <a href={article.source}>Click Here</a></CardTitle>
             </Card>
 
 
