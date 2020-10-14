@@ -6,6 +6,11 @@ import { ArticleList } from "./article/ArticleList"
 import { ArticleProvider } from "./article/ArticleProvider"
 import { ArticleDetail } from "./article/ArticleDetail"
 import { ArticleForm } from "./article/ArticleForm"
+import { ChatProvider } from "./chat/ChatProvider"
+import { ChatDetail } from "./chat/ChatDetail"
+import { ChatList } from "./chat/ChatList"
+import { ChatForm } from "./chat/ChatForm"
+
 //Tasks//
 import { TaskProvider } from "./task/TasksProvider";
 import { TaskList } from "./task/TasksList";
@@ -22,25 +27,27 @@ export const ApplicationViews = () => {
     return (
         <>
 
-
-            <TaskProvider>
-                <ArticleProvider>
-                    <EventProvider>
-                        <Route exact path="/">
-                            <Container>
-                                <Row>
-                                    <Col><TaskList /></Col>
-                                    <Col><Home /></Col>
-                                    <Col><ArticleList /></Col>
-                                </Row>
-                                <Row>
-                                    <Col xs="6"><EventList /></Col>
-                                </Row>
-                            </Container>
-                        </Route>
-                    </EventProvider>
-                </ArticleProvider>
-            </TaskProvider>
+            <ChatProvider>
+                <TaskProvider>
+                    <ArticleProvider>
+                        <EventProvider>
+                            <Route exact path="/">
+                                <Container>
+                                    <Row>
+                                        <Col><TaskList /></Col>
+                                        <Col><Home /></Col>
+                                        <Col><ArticleList /></Col>
+                                    </Row>
+                                    <Row>
+                                        <Col xs="6"><EventList /></Col>
+                                        <Col xs="6"><ChatForm /></Col>
+                                    </Row>
+                                </Container>
+                            </Route>
+                        </EventProvider>
+                    </ArticleProvider>
+                </TaskProvider>
+            </ChatProvider>
             {/* Render the location list when http://localhost:3000/ */}
             {/* <Route exact path="/">
                 <Home />
@@ -98,18 +105,32 @@ export const ApplicationViews = () => {
                 </Route>
             </ArticleProvider>
 
-            <EventProvider>
-                <Route exact path="/event/detail/:eventId(\d+)">
-                    <EventDetail />
+            {/* <ChatProvider>
+                <Route exact path="/messages">
+                    <Home />
+                    <ChatList />
                 </Route>
-            </EventProvider>
+            </ChatProvider> */}
 
-            <EventProvider>
-                <Route exact path="/event/edit/:eventId(\d+)">
-                    <EventForm />
+            <ChatProvider>
+                <Route exact path="/messages/detail/:messageId(\d+)">
+                    <ChatDetail />
                 </Route>
-            </EventProvider>
+            </ChatProvider>
 
+            {/* <ChatProvider>
+                <Route exact path="/messages/create">
+                <Home />
+                    <ChatForm />
+                </Route>
+            </ChatProvider> */}
+
+            <ChatProvider>
+                <Route exact path="/messages/edit/:messageId(\d+)">
+                    <Home />
+                    <ChatForm />
+                </Route>
+            </ChatProvider>
 
         </>
     )
