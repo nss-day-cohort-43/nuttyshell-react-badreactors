@@ -33,18 +33,12 @@ export const ApplicationViews = () => {
                         <EventProvider>
                             <Route exact path="/">
                                 <Container>
-<<<<<<< HEAD
-                                    <Home />
-                                    <Row>
-                                        <Col xs="6 pt-5"><TaskList /></Col>
-                                        <Col><ArticleList /></Col>
-=======
+
                                     <Row><Home /></Row>
                                     <Row>
                                         <Col xs="6 pt-5"><TaskList /></Col>
 
                                         <Col xs="6 pt-5"><ArticleList /></Col>
->>>>>>> main
                                     </Row>
 
                                     <Row>
