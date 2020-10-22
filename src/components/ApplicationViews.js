@@ -33,6 +33,7 @@ export const ApplicationViews = () => {
                         <EventProvider>
                             <Route exact path="/">
                                 <Container>
+
                                     <Row><Home /></Row>
                                     <Row>
                                         <Col xs="6 pt-5"><TaskList /></Col>

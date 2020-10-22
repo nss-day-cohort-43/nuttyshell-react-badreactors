@@ -12,7 +12,7 @@ export const ChatDetail = () => {
     const history = useHistory();
 
     useEffect(() => {
-        
+
         getMessageById(messageId)
             .then((response) => {
                 setMessage(response)
@@ -27,9 +27,9 @@ export const ChatDetail = () => {
         <section className="message">
             <h3 className="message__user">{message.user}</h3>
             <div className="message__content">{message.message}</div>
-            
 
-            
+
+
             <button onClick={
                 () => {
                     deleteMessage(message.id)
@@ -41,9 +41,9 @@ export const ChatDetail = () => {
             <button onClick={() => {
                 history.push(`/messages/edit/${message.id}`
                 )
-                
-                    
-                
+
+
+
             }}>Edit</button>
 
             <button className="btn btn-danger"

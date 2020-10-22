@@ -21,7 +21,7 @@ export const ArticleList = () => {
                 <Button outline color="warning" className="float-right sticky-top" onClick={() => { history.push("/articles/create") }}>
                     Add Article
         </Button>
-                <h2 className="text-success"> Events</h2>
+                <h2 className="text-success"> Interesting Articles</h2>
             </Container>
             <Container className="bg-light overflow-auto h-50 border border-success rounded-bottom border-top-0">
 
